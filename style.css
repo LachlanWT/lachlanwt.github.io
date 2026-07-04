@@ -16,9 +16,18 @@
   /* --- Layout --- */
   --sidebar-width: 25%;
   --content-max:   900px;
+
+  /* --- Motion (Apple-like easing) --- */
+  --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --speed:     0.35s;
 }
 
 * { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 html, body {
   margin: 0;
@@ -27,10 +36,15 @@ html, body {
   color: var(--text);
   background: var(--main-bg);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--speed) var(--ease), opacity var(--speed) var(--ease);
+}
+a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 
 /* =========================================================
    Overall layout: sidebar (left) + main (right)
@@ -62,6 +76,14 @@ a:hover { text-decoration: underline; }
   display: block;
   background: #ffffff;         /* shows while no photo is set */
   border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+  transition: transform var(--speed) var(--ease-soft),
+              box-shadow var(--speed) var(--ease-soft);
+}
+
+.sidebar .photo:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
 }
 
 .sidebar .name {
@@ -84,6 +106,12 @@ a:hover { text-decoration: underline; }
 
 .sidebar .links li { margin: 0.4rem 0; }
 
+.sidebar .links a {
+  display: inline-block;
+  transition: transform var(--speed) var(--ease-soft), color var(--speed) var(--ease);
+}
+.sidebar .links a:hover { transform: translateY(-2px); opacity: 1; }
+
 /* ---------------- Main content ---------------- */
 .main {
   flex: 1;
@@ -104,17 +132,23 @@ a:hover { text-decoration: underline; }
   padding: 0.6rem 1.1rem;
   color: var(--text);
   font-weight: 600;
-  border-radius: 6px 6px 0 0;
+  border-radius: 999px;
+  transition: background var(--speed) var(--ease),
+              color var(--speed) var(--ease),
+              transform var(--speed) var(--ease-soft);
 }
 
-.topnav a:hover {
-  background: rgba(0, 0, 0, 0.05);
-  text-decoration: none;
+.topnav a:hover,
+.topnav a.active:hover {
+  background: var(--sidebar-bg);   /* same light blue as the sidebar */
+  text-decoration: underline;
+  opacity: 1;
 }
 
+/* Active tab looks the same as the others until hovered */
 .topnav a.active {
-  color: var(--accent);
-  border-bottom: 3px solid var(--accent);
+  color: var(--text);
+  background: none;
 }
 
 /* ---------------- Content area ---------------- */
@@ -146,12 +180,13 @@ hr {
 .project-card {
   display: block;
   color: var(--text);
-  transition: transform 0.12s ease;   /* the "pop" on hover */
+  transition: transform var(--speed) var(--ease-soft);   /* the "pop" on hover */
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   text-decoration: none;
+  opacity: 1;
 }
 
 /* The photo. Add an image by setting a background-image on the card's
@@ -160,14 +195,14 @@ hr {
 .project-card .thumb {
   width: 100%;
   aspect-ratio: 4 / 3;         /* height = 3/4 of the width */
-  border-radius: 12px;
+  border-radius: 16px;
   background: #e9e2d2 center / cover no-repeat;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-  transition: box-shadow 0.12s ease;
+  transition: box-shadow var(--speed) var(--ease-soft);
 }
 
 .project-card:hover .thumb {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.20);
 }
 
 /* Name + year sit beneath the photo, still part of the button */
@@ -184,8 +219,28 @@ hr {
   width: 100%;
   height: 80vh;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 16px;
   background: #fff;
+}
+
+/* =========================================================
+   Entrance motion — gentle fade-up on load
+   ========================================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.sidebar { animation: fadeUp 0.6s var(--ease-soft) both; }
+.main .content { animation: fadeUp 0.6s 0.08s var(--ease-soft) both; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* =========================================================
