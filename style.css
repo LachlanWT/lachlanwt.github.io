@@ -11,10 +11,10 @@
   --text:       #2b2b2b;      /* main text */
   --muted:      #6b6b6b;      /* secondary text */
   --accent:     #3a6ea5;      /* links + highlights */
-  --border:     rgba(0, 0, 0, 0.08);
+  --border:     rgba(0, 0, 0, 0.18);   /* hairlines / dividers */
 
   /* --- Layout --- */
-  --sidebar-width: 25%;
+  --sidebar-width: 28%;
   --content-max:   900px;
 
   /* --- Motion (Apple-like easing) --- */
@@ -58,18 +58,21 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 .sidebar {
   flex: 0 0 var(--sidebar-width);
   background: var(--sidebar-bg);
-  padding: 2rem 1.5rem;
+  padding: 2.25rem 1.5rem;
+  margin: 1.5rem;                       /* beige shows around the bubble */
+  border-radius: 28px;                  /* large rounded bubble */
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.10);
   position: sticky;
-  top: 0;
+  top: 1.5rem;
   align-self: flex-start;
-  height: 100vh;
+  height: calc(100vh - 3rem);           /* floats, not touching top/bottom */
   overflow-y: auto;
   text-align: center;
 }
 
 .sidebar .photo {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
@@ -90,12 +93,14 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.25rem 0;
+  white-space: nowrap;         /* keep the name on one line */
 }
 
 .sidebar .tagline {
   color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 1.25rem;
+  white-space: nowrap;         /* keep the tagline on one line */
 }
 
 .sidebar .links {
@@ -140,7 +145,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 
 .topnav a:hover,
 .topnav a.active:hover {
-  background: var(--sidebar-bg);   /* same light blue as the sidebar */
+  color: var(--accent);            /* text turns blue */
   text-decoration: underline;
   opacity: 1;
 }
@@ -250,9 +255,9 @@ hr {
   .layout { flex-direction: column; }
   .sidebar {
     flex-basis: auto;
-    width: 100%;
     height: auto;
     position: static;
+    margin: 1.25rem 1.25rem 0;          /* stays a floating bubble on mobile */
   }
   .main { padding: 1.5rem; }
 }
