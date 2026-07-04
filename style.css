@@ -1,0 +1,8 @@
+/* Portfolio styles — starting blank and white.
+   We'll build the design out from here. */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
