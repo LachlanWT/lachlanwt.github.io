@@ -112,10 +112,19 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 .sidebar .links li { margin: 0.4rem 0; }
 
 .sidebar .links a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   transition: transform var(--speed) var(--ease-soft), color var(--speed) var(--ease);
 }
 .sidebar .links a:hover { transform: translateY(-2px); opacity: 1; }
+
+.sidebar .links svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;          /* logo matches the link color */
+  flex-shrink: 0;
+}
 
 /* ---------------- Main content ---------------- */
 .main {
@@ -137,6 +146,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   padding: 0.6rem 1.1rem;
   color: var(--text);
   font-weight: 600;
+  font-size: 1.1rem;
   border-radius: 999px;
   transition: background var(--speed) var(--ease),
               color var(--speed) var(--ease),
