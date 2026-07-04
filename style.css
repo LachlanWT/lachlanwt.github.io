@@ -1,8 +1,200 @@
-/* Portfolio styles — starting blank and white.
-   We'll build the design out from here. */
+/* =========================================================
+   Portfolio styles
+   Tweak the colors below and the whole site updates.
+   ========================================================= */
+
+:root {
+  /* --- Colors (edit these) --- */
+  --sidebar-bg: #cfe2f0;      /* light blue sidebar */
+  --main-bg:    #f4efe2;      /* beige main area */
+  --card-bg:    #ffffff;      /* project cards / panels */
+  --text:       #2b2b2b;      /* main text */
+  --muted:      #6b6b6b;      /* secondary text */
+  --accent:     #3a6ea5;      /* links + highlights */
+  --border:     rgba(0, 0, 0, 0.12);
+
+  /* --- Layout --- */
+  --sidebar-width: 25%;
+  --content-max:   900px;
+}
+
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--main-bg);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* =========================================================
+   Overall layout: sidebar (left) + main (right)
+   ========================================================= */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  flex: 0 0 var(--sidebar-width);
+  background: var(--sidebar-bg);
+  padding: 2rem 1.5rem;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.sidebar .photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  display: block;
+  background: #ffffff;         /* shows while no photo is set */
+  border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.sidebar .tagline {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar .links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .links li { margin: 0.4rem 0; }
+
+/* ---------------- Main content ---------------- */
+.main {
+  flex: 1;
+  padding: 2rem 3rem;
+}
+
+/* ---------------- Top nav tabs ---------------- */
+.topnav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.topnav a {
+  padding: 0.6rem 1.1rem;
+  color: var(--text);
+  font-weight: 600;
+  border-radius: 6px 6px 0 0;
+}
+
+.topnav a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+}
+
+.topnav a.active {
+  color: var(--accent);
+  border-bottom: 3px solid var(--accent);
+}
+
+/* ---------------- Content area ---------------- */
+.content { max-width: var(--content-max); }
+
+.content h1 { font-size: 2rem; margin-top: 0; }
+.content h2 { margin-top: 2rem; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+/* ---------------- Coursework groups ---------------- */
+.semester { margin-bottom: 1.5rem; }
+.semester h3 { margin-bottom: 0.4rem; }
+.semester ul { margin-top: 0.3rem; }
+
+/* =========================================================
+   Projects grid (clickable cards, like Pranav's)
+   ========================================================= */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  color: var(--text);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+}
+
+.project-card .thumb {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #e9e2d2;         /* placeholder color before an image is added */
+  margin-bottom: 0.8rem;
+}
+
+.project-card .title { font-weight: 700; font-size: 1.05rem; }
+.project-card .year { color: var(--muted); font-size: 0.85rem; }
+.project-card .blurb { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+
+/* Back link on project detail pages */
+.back-link { display: inline-block; margin-bottom: 1rem; font-weight: 600; }
+
+/* =========================================================
+   Resume embed
+   ========================================================= */
+.resume-frame {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* =========================================================
+   Responsive: stack sidebar on top for small screens
+   ========================================================= */
+@media (max-width: 800px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    flex-basis: auto;
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  .main { padding: 1.5rem; }
 }

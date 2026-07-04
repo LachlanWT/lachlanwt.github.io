@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Lachlan Watts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="projects">
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main">
+      <nav class="topnav" id="topnav"></nav>
+
+      <section class="content">
+        <h1>Projects</h1>
+        <p>Click a project to read more.</p>
+
+        <!-- ============================================
+             PROJECTS GRID
+             Each card links to its own page in /projects/.
+             To add a project:
+               1. Copy projects/project-template.html to a new
+                  file, e.g. projects/my-project.html
+               2. Copy one ".project-card" block below and point
+                  its href at your new file.
+             ============================================ -->
+        <div class="project-grid">
+
+          <a class="project-card" href="projects/project-1.html">
+            <div class="thumb"></div>
+            <div class="title">Project One</div>
+            <div class="year">2026</div>
+            <div class="blurb">One-line summary of the project.</div>
+          </a>
+
+          <a class="project-card" href="projects/project-2.html">
+            <div class="thumb"></div>
+            <div class="title">Project Two</div>
+            <div class="year">2025</div>
+            <div class="blurb">One-line summary of the project.</div>
+          </a>
+
+          <!-- Copy a card above to add more projects -->
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+  <script src="site.js"></script>
+</body>
+</html>

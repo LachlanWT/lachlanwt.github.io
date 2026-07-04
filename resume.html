@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Lachlan Watts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="resume">
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main">
+      <nav class="topnav" id="topnav"></nav>
+
+      <section class="content">
+        <h1>Resume</h1>
+
+        <!-- ============================================
+             RESUME
+             Put your resume PDF at: assets/resume.pdf
+             It will display right here on the page.
+             ============================================ -->
+        <p><a href="assets/resume.pdf" download>Download PDF</a></p>
+
+        <iframe class="resume-frame" src="assets/resume.pdf"
+                title="Resume">
+          <!-- Shown only if the browser can't display the PDF inline -->
+          Your browser can't show the PDF here.
+          <a href="assets/resume.pdf">Download it instead.</a>
+        </iframe>
+      </section>
+    </main>
+
+  </div>
+  <script src="site.js"></script>
+</body>
+</html>
