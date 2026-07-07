@@ -5,8 +5,8 @@
 
 :root {
   /* --- Colors (edit these) --- */
-  --sidebar-bg: #dcebf7;      /* light blue sidebar */
-  --main-bg:    #f4efe2;      /* beige main area */
+  --sidebar-bg: #cde8ff;      /* bright light blue sidebar */
+  --main-bg:    #f3f4f6;      /* very light grey main area */
   --card-bg:    #ffffff;      /* project cards / panels */
   --text:       #2b2b2b;      /* main text */
   --muted:      #6b6b6b;      /* secondary text */
@@ -211,7 +211,7 @@ hr {
   width: 100%;
   aspect-ratio: 4 / 3;         /* height = 3/4 of the width */
   border-radius: 16px;
-  background: #e9e2d2 center / cover no-repeat;
+  background: #e4e6ea center / cover no-repeat;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
   transition: box-shadow var(--speed) var(--ease-soft);
 }
@@ -230,12 +230,14 @@ hr {
 /* =========================================================
    Resume embed
    ========================================================= */
-.resume-frame {
+.resume-img {
+  display: block;
   width: 100%;
-  height: 80vh;
+  max-width: 800px;
+  height: auto;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
+  border-radius: 8px;          /* small corner rounding */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
 }
 
 /* =========================================================
