@@ -7,16 +7,16 @@
    ========================================================= */
 
 const SITE = {
-  name: "Your Name",                       // <-- your name
-  tagline: "Student • UC Berkeley",        // <-- short line under your name
-  photo: "assets/profile.jpg",             // <-- drop your photo in the assets folder
+  name: "Lachlan Watts-Tobin",                       // <-- your name
+  tagline: "EECS Student • UC Berkeley",        // <-- short line under your name
+  photo: "assets/pfp.png",             // <-- drop your photo in the assets folder
 
   // Add, remove, or edit links freely.
   // "icon" picks a logo from the ICONS list further down.
   links: [
-    { label: "Email",    href: "mailto:you@example.com",                 icon: "email" },
-    { label: "GitHub",   href: "https://github.com/YOURUSERNAME",         icon: "github" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/YOURUSERNAME/", icon: "linkedin" },
+    { label: "Email",    href: "https://mail.google.com/mail/?view=cm&fs=1&to=lachlanwt@berkeley.edu", icon: "email" },
+    { label: "GitHub",   href: "https://github.com/LachlanWT",         icon: "github" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/lachlanwt/", icon: "linkedin" },
   ],
 };
 
@@ -54,7 +54,7 @@ function buildSidebar() {
   const linksHtml = SITE.links
     .map((l) => {
       const icon = l.icon && ICONS[l.icon] ? ICONS[l.icon] : "";
-      return `<li><a href="${l.href}">${icon}<span>${l.label}</span></a></li>`;
+      return `<li><a href="${l.href}" target="_blank" rel="noopener">${icon}<span>${l.label}</span></a></li>`;
     })
     .join("");
 
