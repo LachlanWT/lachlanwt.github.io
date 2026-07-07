@@ -61,10 +61,35 @@ function buildSidebar() {
   el.innerHTML = `
     <img class="photo" src="${BASE}${SITE.photo}" alt="${SITE.name}"
          onerror="this.style.visibility='hidden'">
-    <div class="name">${SITE.name}</div>
-    <div class="tagline">${SITE.tagline}</div>
-    <ul class="links">${linksHtml}</ul>
+    <div class="sidebar-body">
+      <div class="name">${SITE.name}</div>
+      <div class="tagline">${SITE.tagline}</div>
+      <ul class="links">${linksHtml}</ul>
+    </div>
   `;
+}
+
+// On mobile the sidebar is a fixed banner, so the main content needs
+// enough top padding to start below it (recomputed on load / resize).
+function adjustMobileHeader() {
+  const sidebar = document.getElementById("sidebar");
+  const nav = document.getElementById("topnav");
+  const main = document.querySelector(".main");
+  if (!sidebar || !main) return;
+
+  if (window.matchMedia("(max-width: 800px)").matches) {
+    const bannerBottom = 14 + sidebar.offsetHeight;   // 14px = banner top offset
+    if (nav) {
+      const navTop = bannerBottom + 10;               // menu bar sits below banner
+      nav.style.top = navTop + "px";
+      main.style.paddingTop = navTop + nav.offsetHeight + 16 + "px";
+    } else {
+      main.style.paddingTop = bannerBottom + 20 + "px";
+    }
+  } else {
+    main.style.paddingTop = "";     // let the desktop stylesheet take over
+    if (nav) nav.style.top = "";
+  }
 }
 
 function buildNav() {
@@ -84,4 +109,51 @@ function buildNav() {
 document.addEventListener("DOMContentLoaded", function () {
   buildSidebar();
   buildNav();
+  adjustMobileHeader();
+});
+window.addEventListener("load", adjustMobileHeader);
+window.addEventListener("resize", adjustMobileHeader);
+
+/* Quick-return header: hide on scroll down, reveal on scroll up,
+   and always fully shown at the very top of the page. */
+(function () {
+  let lastY = window.scrollY;
+  let ticking = false;
+  const THRESHOLD = 8;   // ignore tiny scroll jitters
+
+  function update() {
+    const y = Math.max(0, window.scrollY);
+    if (y <= 10) {
+      document.body.classList.remove("nav-hidden");        // settled at top
+    } else if (y > lastY + THRESHOLD) {
+      document.body.classList.add("nav-hidden");           // scrolling down
+    } else if (y < lastY - THRESHOLD) {
+      document.body.classList.remove("nav-hidden");        // scrolling up
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  });
+})();
+
+/* Fade the page out before following an internal link. External links,
+   downloads, new-tab links, and mailto/anchor links are left alone. */
+document.addEventListener("click", function (e) {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href) return;
+  if (a.target === "_blank" || a.hasAttribute("download")) return;
+  if (href.startsWith("#") || href.startsWith("mailto:") ||
+      href.startsWith("http://") || href.startsWith("https://")) return;
+
+  e.preventDefault();
+  document.body.style.opacity = "0";
+  setTimeout(function () { window.location.href = href; }, 200);
 });

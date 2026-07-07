@@ -140,7 +140,17 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   border-bottom: 1px solid var(--border);
   margin-bottom: 2rem;
   flex-wrap: wrap;
+  /* Quick-return header: sticks to the top, hides on scroll-down,
+     slides back in on scroll-up (see body.nav-hidden below). */
+  position: sticky;
+  top: 0;
+  background: var(--main-bg);
+  z-index: 40;
+  transition: transform 0.32s var(--ease);
 }
+
+/* When scrolling down, slide the header up out of view */
+body.nav-hidden .topnav { transform: translateY(-140%); }
 
 .topnav a {
   padding: 0.6rem 1.1rem;
@@ -248,8 +258,19 @@ hr {
   to   { opacity: 1; transform: none; }
 }
 
-.sidebar { animation: fadeUp 0.6s var(--ease-soft) both; }
 .main .content { animation: fadeUp 0.6s 0.08s var(--ease-soft) both; }
+
+/* Whole-page fade in on load, and a quick fade out when leaving
+   via an internal link (JS sets body opacity to 0 before navigating). */
+@keyframes pageIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body {
+  animation: pageIn 0.3s var(--ease);
+  transition: opacity 0.2s var(--ease);
+}
 
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -265,11 +286,79 @@ hr {
    ========================================================= */
 @media (max-width: 800px) {
   .layout { flex-direction: column; }
-  .sidebar {
-    flex-basis: auto;
-    height: auto;
-    position: static;
-    margin: 1.25rem 1.25rem 0;          /* stays a floating bubble on mobile */
+
+  /* Fixed hairline pinned to the very top of the screen */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--border);
+    z-index: 60;
+    transition: transform 0.32s var(--ease);
   }
+
+  /* Blue sidebar becomes a fixed banner just below the hairline.
+     It floats as a layer with clear gaps around it, so page content
+     scrolls behind it. */
+  .sidebar {
+    position: fixed;
+    top: 14px;
+    left: 1rem;
+    right: 1rem;
+    height: auto;
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 22px;
+    z-index: 50;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;         /* photo left, text/links right */
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    transition: transform 0.36s var(--ease-soft);
+  }
+
+  .sidebar .photo {
+    width: 84px;
+    height: 84px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  /* Name, tagline, and links stacked and centered to the right */
+  .sidebar-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sidebar .name { font-size: 1.15rem; white-space: normal; }
+  .sidebar .tagline { font-size: 0.85rem; white-space: normal; margin-bottom: 0.5rem; }
+
+  /* Menu bar is fixed just below the banner (top set in site.js) */
+  .topnav {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    justify-content: center;
+    background: var(--main-bg);
+    border-radius: 16px;
+    margin-bottom: 0;
+    padding: 2px 8px;
+    z-index: 45;
+  }
+
+  .topnav a { font-size: 1rem; padding: 0.45rem 0.7rem; }
+
+  /* Main content clears the fixed banner; padding-top set in site.js */
   .main { padding: 1.5rem; }
+
+  /* Scrolling down slides the whole top layer up out of view */
+  body.nav-hidden::before { transform: translateY(-100%); }
+  body.nav-hidden .sidebar { transform: translateY(-165%); }
+  body.nav-hidden .topnav { transform: translateY(-320%); }
 }
