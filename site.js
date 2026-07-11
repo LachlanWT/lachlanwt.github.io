@@ -114,32 +114,48 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("load", adjustMobileHeader);
 window.addEventListener("resize", adjustMobileHeader);
 
-/* Quick-return header: hide on scroll down, reveal on scroll up,
-   and always fully shown at the very top of the page. */
+/* Header moves 1:1 with the page: scrolling down pushes it up until it
+   is hidden just above the top; scrolling up pulls it straight back down.
+   It only ever moves at the exact rate you scroll. The upward shift is
+   stored in --nav-offset and applied as a translate in the CSS. */
 (function () {
   let lastY = window.scrollY;
+  let offset = 0;
+  let maxOffset = 0;
   let ticking = false;
-  const THRESHOLD = 8;   // ignore tiny scroll jitters
 
-  function update() {
-    const y = Math.max(0, window.scrollY);
-    if (y <= 10) {
-      document.body.classList.remove("nav-hidden");        // settled at top
-    } else if (y > lastY + THRESHOLD) {
-      document.body.classList.add("nav-hidden");           // scrolling down
-    } else if (y < lastY - THRESHOLD) {
-      document.body.classList.remove("nav-hidden");        // scrolling up
+  function measure() {
+    const nav = document.getElementById("topnav");
+    const sidebar = document.getElementById("sidebar");
+    if (!nav) { maxOffset = 0; return; }
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      // hide the whole top group (hairline + banner + menu bar)
+      const navTop = 14 + (sidebar ? sidebar.offsetHeight : 0) + 10;
+      maxOffset = navTop + nav.offsetHeight + 6;
+    } else {
+      maxOffset = nav.offsetHeight + 6;   // just the top bar
     }
+    if (offset > maxOffset) offset = maxOffset;
+  }
+
+  function apply() {
+    document.documentElement.style.setProperty("--nav-offset", offset + "px");
+  }
+
+  function onFrame() {
+    const y = Math.max(0, window.scrollY);
+    offset = Math.min(maxOffset, Math.max(0, offset + (y - lastY)));
     lastY = y;
+    apply();
     ticking = false;
   }
 
   window.addEventListener("scroll", function () {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
+    if (!ticking) { window.requestAnimationFrame(onFrame); ticking = true; }
   });
+  window.addEventListener("resize", function () { measure(); apply(); });
+  window.addEventListener("load", measure);
+  document.addEventListener("DOMContentLoaded", measure);
 })();
 
 /* Fade the page out before following an internal link. External links,
@@ -155,5 +171,5 @@ document.addEventListener("click", function (e) {
 
   e.preventDefault();
   document.body.style.opacity = "0";
-  setTimeout(function () { window.location.href = href; }, 200);
+  setTimeout(function () { window.location.href = href; }, 120);
 });

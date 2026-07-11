@@ -80,13 +80,6 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   background: #ffffff;         /* shows while no photo is set */
   border: 3px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
-  transition: transform var(--speed) var(--ease-soft),
-              box-shadow var(--speed) var(--ease-soft);
-}
-
-.sidebar .photo:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
 }
 
 .sidebar .name {
@@ -129,7 +122,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 /* ---------------- Main content ---------------- */
 .main {
   flex: 1;
-  padding: 2rem 3rem;
+  padding: 0 3rem 2rem;   /* top spacing comes from the header itself */
 }
 
 /* ---------------- Top nav tabs ---------------- */
@@ -139,18 +132,16 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   justify-content: flex-end;   /* tabs aligned to the right */
   border-bottom: 1px solid var(--border);
   margin-bottom: 2rem;
+  padding-top: 1.5rem;
   flex-wrap: wrap;
-  /* Quick-return header: sticks to the top, hides on scroll-down,
-     slides back in on scroll-up (see body.nav-hidden below). */
+  /* Header pins to the top, then is pushed up/down 1:1 with the page
+     as you scroll (offset lives in --nav-offset, set by site.js). */
   position: sticky;
   top: 0;
   background: var(--main-bg);
   z-index: 40;
-  transition: transform 0.32s var(--ease);
+  transform: translateY(calc(var(--nav-offset, 0px) * -1));
 }
-
-/* When scrolling down, slide the header up out of view */
-body.nav-hidden .topnav { transform: translateY(-140%); }
 
 .topnav a {
   padding: 0.6rem 1.1rem;
@@ -268,8 +259,8 @@ hr {
 }
 
 body {
-  animation: pageIn 0.3s var(--ease);
-  transition: opacity 0.2s var(--ease);
+  animation: pageIn 0.18s var(--ease);
+  transition: opacity 0.12s var(--ease);
 }
 
 /* Respect users who prefer reduced motion */
@@ -296,7 +287,7 @@ body {
     right: 0;
     border-top: 1px solid var(--border);
     z-index: 60;
-    transition: transform 0.32s var(--ease);
+    transform: translateY(calc(var(--nav-offset, 0px) * -1));
   }
 
   /* Blue sidebar becomes a fixed banner just below the hairline.
@@ -318,7 +309,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    transition: transform 0.36s var(--ease-soft);
+    transform: translateY(calc(var(--nav-offset, 0px) * -1));
   }
 
   .sidebar .photo {
@@ -356,9 +347,4 @@ body {
 
   /* Main content clears the fixed banner; padding-top set in site.js */
   .main { padding: 1.5rem; }
-
-  /* Scrolling down slides the whole top layer up out of view */
-  body.nav-hidden::before { transform: translateY(-100%); }
-  body.nav-hidden .sidebar { transform: translateY(-165%); }
-  body.nav-hidden .topnav { transform: translateY(-320%); }
 }
