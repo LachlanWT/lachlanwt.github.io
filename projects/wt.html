@@ -6,6 +6,10 @@
   <title>Winder Turbine</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chml.js"></script>
 </head>
 <body data-page="projects">
   <script>window.SITE_BASE = "../";</script>
@@ -20,11 +24,222 @@
         <a class="back-link" href="../projects.html">&larr; Back to Projects</a>
 
         <h1>Winder Turbine</h1>
-        <p class="year">2024</p>
+        <p class="year">October 2024 - December 2024</p>
 
-        <!-- <img src="../assets/wt.png" alt="Winder Turbine" style="max-width:100%;border-radius:8px;"> -->
+        <div class="project-highlights">
+          <ul>
+            <li>Optimized turbine blade efficiency and tower rigidity through SolidWorks modeling and FEA simulation.</li>
+            <li>Fabricated and tested a physical prototype using additive manufacturing.</li>
+            <li>Facilitated and led the team, organizing members and dividing the project into clear tasks.</li>
+          </ul>
+        </div>
 
-        <p>PAGE UNDER CONSTRUCTION</p>
+        <h2>Collaborators</h2>
+        <div class="collab-buttons">
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=arroyochavez_diego@berkeley.edu" target="_blank" rel="noopener">Diego Arroyo Chavez</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=akira_murata@berkeley.edu" target="_blank" rel="noopener">Akira Murata</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=feinan@berkeley.edu" target="_blank" rel="noopener">Fei Nan</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=alessandro@berkeley.edu" target="_blank" rel="noopener">Alessandro Torres</a>
+        </div>
+
+        <hr>
+
+        <div class="report">
+<h2 id="wind-turbine-project-report">Wind Turbine Project Report</h2>
+
+<h3 id="section-i-project-summary">Section I: Project Summary</h3>
+<p>In a world where renewable energy is in high demand, wind turbines have become a safe and reliable resource that companies and corporations have heavily invested in to reduce reliance on fossil fuels. This project highlights the feasibility of small-scale wind turbine fabrication using modern technologies like 3D printing, SolidWorks CAD modeling, and data analysis. The primary objective was to meet design requirements for power output, stiffness, and weight while providing an opportunity to enhance CAD and engineering skills at a college level.</p>
+<p>The turbine was designed with dimensions of 12 inches by 12 inches at the base and a height of 16 inches, with a maximum volume of 17 in³. The rotor blades were designed to fit an area of 6.0 in² - limiting the blade length to 3.0 inches from the tip - where our group used the NACA 4412 airfoil profile in hopes to maximize lift and minimize drag. During testing, the turbine successfully met all project requirements, achieving a peak power output of 1.209 W under wind conditions of 25 mph, a stiffness of 17.3 N/mm, and a total weight of 303.1 g. Although our team faced setbacks in how we expected our wind turbine to maximize its efficiency, this gap presents opportunities for future improvements.</p>
+<p>The project exemplifies how engineers design, manufacture, and collaborate to address real-world challenges. By utilizing advanced tools and working collaboratively, our team gained valuable insights into engineering processes, preparing us for future projects. Successfully meeting the design objectives while identifying areas for growth highlights the potential for engineering students to contribute to technological innovation and sustainable energy solutions.</p>
+<h3 id="section-ii-table-of-contents">Section II: Table of Contents</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Section #:</th>
+<th>Topic:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><span class="underline">Cover Page:</span></td>
+</tr>
+<tr class="even">
+<td>Section I:</td>
+<td><span class="underline">Project Summary:</span></td>
+</tr>
+<tr class="odd">
+<td>Section II:</td>
+<td><span class="underline">Table of Contents:</span></td>
+</tr>
+<tr class="even">
+<td>Section III:</td>
+<td><span class="underline">Introduction:</span></td>
+</tr>
+<tr class="odd">
+<td>Section IV:</td>
+<td><span class="underline">Design Process:</span></td>
+</tr>
+<tr class="even">
+<td>Section V:</td>
+<td><span class="underline">Testing and Results:</span></td>
+</tr>
+<tr class="odd">
+<td>Section VI:</td>
+<td><span class="underline">Conclusions:</span></td>
+</tr>
+<tr class="even">
+<td>Section VII:</td>
+<td><span class="underline">Recommendations for Future Work:</span></td>
+</tr>
+<tr class="odd">
+<td>Section VIII:</td>
+<td><span class="underline">References:</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-iii-project-introduction">Section III: Project Introduction</h3>
+<h4 id="section-iii.i-introduction">Section III.I: Introduction</h4>
+<p>This project aims to design, fabricate, and test a horizontal-axis wind turbine - encompassing both the blades and the support tower - to meet specific performance targets in power output, structural stiffness, and overall weight. We aim to merge practical engineering with broader principles that make wind energy an appealing and fast-growing renewable resource. Wind power’s allure lies in its ability to generate electricity without greenhouse gas emissions and its economic incentives, technological advancements, and the research that informs next-generation turbine designs.</p>
+<p>Around the world, wind energy has evolved into an increasingly competitive and reliable source of electricity. As wind passes over a turbine’s precisely shaped blades, it is converted into kinetic energy and then into electrical power (Wind Energy Technologies Office, 2024). Over recent decades, turbine materials, blade aerodynamics, and energy capture efficiency improvements have driven down costs. At the same time, supportive government policies have accelerated large-scale adoption. By 2022, wind energy in the United States produced about 434.81 billion kilowatt-hours, representing roughly 10.25% of the country’s total electricity generation (<em>Electricity Generation from Wind</em>, 2023).</p>
+<p>The benefits of wind energy reach far beyond meeting grid demand. Environmental advantages include zero harmful emissions or water pollution, positioning wind as an integral element in striving for a carbon-free energy future. Economically, it can invigorate local communities - landowners who lease their property for turbines can maintain agricultural operations while earning extra income, and the labor needed for manufacturing, installation, and maintenance creates valuable jobs (<em>Wind Energy Basics | NREL,</em> 2019). From a research standpoint, ongoing studies focus on improving turbine designs to boost efficiency, reduce waste, and safeguard local wildlife. Engineers are currently examining recyclable components, noise mitigation strategies, and visual or acoustic deterrents to minimize harm to birds and bats while striving to maintain or improve turbine performance (<em>Wind Energy Basics | NREL</em>, 2019).</p>
+<h4 id="section-iii.ii-turbine-design-parameters-a-wind-turbines-performance-and-efficiency-are-determined-by-its-blade-design-and-configuration.-engineers-design-blades-to-resemble-airfoils-optimizing-their-aerodynamic-profiles-to-generate-the-right-balance-of-lift-and-drag-spinning-the-rotor-and-capturing-the-maximum-possible-energy-from-the-wind-wind-turbine-design-for-a-wind-turbine-system-n.d..-the-number-of-blades-usually-three-for-modern-turbines-balances-efficiency-and-cost.-fewer-blades-may-be-unstable-while-adding-more-than-three-increases-weight-and-complexity-without-proportionate-gains-in-power-production-wind-turbine-design-for-a-wind-turbine-system-n.d..">Section III.II: Turbine Design Parameters</h4>
+<p>A wind turbine’s performance and efficiency are determined by its blade design and configuration. Engineers design blades to resemble airfoils, optimizing their aerodynamic profiles to generate the right balance of lift and drag, spinning the rotor, and capturing the maximum possible energy from the wind (<em>Wind Turbine Design for a Wind Turbine System</em>, n.d.). The number of blades, usually three for modern turbines, balances efficiency and cost. Fewer blades may be unstable, while adding more than three increases weight and complexity without proportionate gains in power production (<em>Wind Turbine Design for a Wind Turbine System</em>, n.d.).</p>
+<p>Blade length directly correlates with the amount of wind power harvested: longer blades sweep a larger area, resulting in higher energy capture. However, these gains must be weighed against more significant material stresses and higher structural demands (Wind Turbine Design for a Wind Turbine System, n.d.). Another key factor is the angle of attack - the angle at which the blade meets the oncoming wind flow. This angle must be precisely controlled; it is too shallow, and you lose lift; it is too steep, and the blade stalls, squandering energy potential. Pitch control systems help maintain this delicate balance, adapting blades to changing wind conditions (<em>Wind Turbine Design for a Wind Turbine System,</em> n.d.).</p>
+<p>Optimizing these parameters - blade shape, number, length, and angle of attack - helps achieve the best tip-speed ratio and overall turbine performance. Engineers enhance economic and environmental returns, making wind energy cleaner and more cost-effective.</p>
+<h4 id="section-iii.iii-project-brief-and-testing-approach-we-will-fabricate-blades-and-a-tower-for-this-project-to-meet-stringent-size-and-performance-criteria.-the-tower-will-measure-12-inches-by-12-inches-by-16-inches-with-a-total-volume-of-no-more-than-17-in³.-the-blade-length-from-the-hub-center-to-the-tip-must-not-exceed-3.0-inches-limiting-the-swept-area-to-6.0-in².-achieving-top-marks-requires-the-turbine-to-deliver-more-than-2-w-of-power-a-stiffness-greater-than-8-nmm-and-a-total-weight-of-less-than-325-g.">Section III.III: Project Brief and Testing Approach</h4>
+<p>We will fabricate blades and a tower for this project to meet stringent size and performance criteria. The tower will measure 12 inches by 12 inches by 16 inches, with a total volume of no more than 17 in³. The blade length from the hub center to the tip must not exceed 3.0 inches, limiting the swept area to 6.0 in². Achieving top marks requires the turbine to deliver more than 2 W of power, a stiffness greater than 8 N/mm, and a total weight of less than 325 g.</p>
+<p>The project has four main stages: Blade Design, Tower Design, 3D Printing, and Testing. Team members will investigate various design concepts independently before collaborating to finalize a model in SolidWorks. Once the components are manufactured via 3D printing, they will be assembled and tested.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image15.png" style="width:3.10495in;" /><span class="cap-text">S809 Airfoil</span></span><span class="cap-img"><img src="../assets/wtr/image11.png" style="width:2.97917in;" /><span class="cap-text">Blade sketch by Akira Murata</span></span></p>
+
+<p><span class="cap-img"><img src="../assets/wtr/image34.png" style="width:2.14863in;" /><span class="cap-text">Tower Sketch by Akira Murata</span></span><span class="cap-img"><img src="../assets/wtr/image38.png" style="width:2.00531in;" /><span class="cap-text">Tower Sketch by Jesus Torres</span></span></p>
+
+<p><span class="cap-img"><img src="../assets/wtr/image23.png" style="width:1.98438in;" /><span class="cap-text">Tower Design Digital Prototype By Alessandro Torres</span></span><span class="cap-img"><img src="../assets/wtr/image17.png" style="width:1.37038in;" /><span class="cap-text">Final Tower Design by Lachlan Watts-Tobin</span></span></p>
+
+<p>Power testing involves placing the turbine on a secure platform and using a blower to produce steady wind at about 25 mph. We will determine the turbine's peak power output by slowly adjusting the load through a potentiometer and recording voltage and current. Plotting the resulting data and fitting a curve will help confirm maximum performance.</p>
+<p>We will mount the turbine for stiffness testing, attach a string and eyebolt to the top support plate, and apply incremental weights. We can quantify the tower's stiffness by measuring deflection at each load, plotting the results, and calculating the slope.<strong><br />
+</strong>In developing and testing this wind turbine, we stand at the intersection of practical engineering design and the broader ambitions driving the wind energy sector. Through thoughtful blade geometry, careful material selection, and precise tuning of blade pitch, our project aims to highlight the delicate balance needed to translate the natural power of moving air into a reliable and sustainable electrical resource. As our tests confirm power output, stiffness, and weight benchmarks, we gain insights that mirror those guiding large-scale wind installations worldwide. Ultimately, this experience underlines the promise and complexity of wind energy technology, forging a small but meaningful step toward a cleaner, more resilient future.</p>
+<h3 id="section-iv-design-process">Section IV: Design Process</h3>
+<h4 id="section-iv.i-design-overview">Section IV.I: Design Overview:</h4>
+<p>This project required groups to work collaboratively to design a wind turbine. We had to work and revise to create an effective prototype of a tower section and rotor blades to prepare for real-world testing. Throughout this class, we have acquired the necessary skills to develop a practical design that must comply with the constraints of the final product. Groups diversify their roles and contributions on a strict timeline to effectively create a product, test its effectiveness, and report on their findings. Our group met this challenge head-on, effectively completing our design sprint and implementing the skills and practices we learned through this class.</p>
+<p>In engineering, efficiency is only one of the many factors that engineers must consider during the extensive design process when designing something to the scale of a wind turbine. The Power Output of the wind turbine is given by the equation <span class="math inline">\(P = \frac{1}{2}\text{pA}v^{3}C_{p}\)</span>(3.1), where p = air density (kg/m^3), A = swept area of the wind turbine blades (m^2), v = wind speed (m/s), and Cp is the power coefficient. Thus, to maximize the power output, the swept area of the wind turbine blades and the aerodynamic efficiency of the wind turbine blades should be maximized.</p>
+<p>Engineers must consider many other factors to ensure a reliable and safe result; one of the primary considerations is structural integrity. Stability is paramount to achieving a secure design that won't fail under harsh conditions, but this must be balanced with the inversely correlated reduction of material used. Through careful analysis, testing, and prototyping, engineering finds this balance by optimizing the stiffness with respect to material usage/cost. Through the lens of this project, our team chose to emulate this process to the best of our abilities, given the constraints on time and resources. We optimized our tower to increase durability while meeting all requirements set forth by the project.</p>
+<p>Our group chose the NACA 4412 turbine blade due to its optimal lift-to-drag ratio among the other blades we considered (<a href="https://www.alternative-energy-tutorials.com/wind-energy/wind-turbine-blade-design.html"><span class="underline">Wind Turbine Blade Design</span></a>). The NACA 4412 blade’s curved upper surface and flat lower surface allows for a more aerodynamic design, similar to other turbine blades. An angle of attack of 5 degrees was chosen, as an article from 2013 published in the International Journal of Innovative Research in Science, Engineering, and Technology demonstrated 5 degrees was optimal for the NACA 4412 blade to generate lift without having a detrimentally steep angle (<a href="https://www.ijirset.com/upload/may/57_2D%20ANALYSIS.pdf"><span class="underline">ijirset</span></a>). A blade number of 3 was chosen, as a tri-blade design is the industry standard in the wind energy sector due to its efficiency at varying wind speeds and stability (<a href="https://iopscience.iop.org/article/10.1088/1755-1315/801/1/012020/pdf#:~:text=So%2C%20a%20three%2Dblade%20turbine,and%20minimum%20stress%20%5B9%5D"><span class="underline">The Effect of the Number of Blades on the Efficiency of A Wind Turbine</span></a>). Finally, an angle of twist at 15 degrees was chosen as an angle between 10~20 degrees is widely considered the optimal angle to maximize the lift-to-drag ratio in modern wind turbines (<a href="https://www.nmmesa.org/wp-content/uploads/2019/10/Aerodynamics-of-Wind-Turbine-Blades.pdf"><span class="underline">New Mexico MESA</span></a>).</p>
+<p>The first step of our design was individual research and concept work, in which we all created a design to diversify our perspectives. After this initial phase, our team got together and reviewed each of the designs and assessed the potential effectiveness of each concept. Following the concept stage, we emulated the standard process by prototyping a complete CAD design of the three concepts we predicted would succeed most. Once we had created the models of our potential design, we used tools such as Finite Element Analysis (FEA) to determine strengths/weaknesses in each prototype. After viewing and analyzing our results, we selected the design that performed the best. We prepared an updated version based on the predicted data from our studies and the culminating strengths of each prototype. Finally, we fabricated a physical prototype of our 3rd stage design to perform physical experimentation so we could compare the real-world data to our predictions based on digital studies; with this data comparison, we could move forward to find where we can improve our design and further reduce our material usage and increase stiffness. Organization was another key feature of our design process; since day one of the project, we utilized a shared drive so that everyone could access our collected sketches, research, drafts, and CAD designs, which supported clear communication within the team. Overall, our group's “design sprint” for this project emulated the real-world design process used in the engineering industry for large-scale projects.</p>
+<p>Our group’s final draft tower structure utilized a wide base to minimize displacement caused by force applied at the top of the tower. Each horizontal cross-section is supported by six interwoven triangular trusses designed to culminate in an area of stress concentration. Large sections of the tower were left hollow to meet the volume requirements of the experiment. The tower’s stiffness was further confirmed and refined upon conducting various Finite Element Analysis (FEA) simulations. Our group created a custom material in Solidworks to accurately predict the physical properties of our design. Given our ability to easily print in PLA, it was chosen as the material for our project, with an associated Elastic Modulus of 3500 N/mm^2, Poisson's Ratio of 0.35, and Yield Strength of 40 N/mm^2, among other values, we predicted it would effectively serve our purpose. After performing digital experimentation, the returned values were as follows: Comparison of Stress was Max. 1.852e+06 (N/mm^2), Strain of Max 3.690e-04, displacement of Max. 1.476e-01 (mm), Factor of Safety of Min.22, and a general stiffness of 65.34(N/mm) (General Stiffness formula: S=F(N)[Force]/ 𝛿(mm)[Deflection])(3.2). These values demonstrate that our tower could withstand exceptional force upon the turbine center before structural failure.</p>
+<p>Our group worked collaboratively, making data-based decisions to drive our design from the initial concept stage to a test-ready prototype. We implemented design tactics, commonplace practice in the industry, and skills learned in this class to refine a successful prototype. Based on our predicted data, we improved our design until it was ready for physical testing. In the next step, we could compare our physical data to the expected and make adjustments reflecting the data and its correlation to our predictions.</p>
+<h4 id="section-iv.ii-sketches">Section IV.II: Sketches:</h4>
+<p>Below are some initial sketches our group created, which played a critical role in the concept phase of our design process. These sketches were a key part of visualizing our design, allowing us to make first-glance predictions regarding efficiency and stability. Each team member created a sketch for rotors and tower design in the concept phase. We then collaborated to refine these initial concepts further, fostering our pool of diverse perspectives throughout the design process. We worked to integrate successful elements into our final design iteratively.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image14.jpg" style="width:4.90104in;" /><span class="cap-text">Airfoil sketch by Arika Murata</span></span></p>
+<blockquote>
+
+</blockquote>
+<p><span class="cap-img"><img src="../assets/wtr/image11.png" style="width:3.73438in;" /><span class="cap-text">Blade sketch by Akira Murata</span></span></p>
+<blockquote>
+
+</blockquote>
+<p><span class="cap-img"><img src="../assets/wtr/image16.png" style="width:2.74479in;" /><span class="cap-text">Hub sketch by Akira Murata</span></span></p>
+<blockquote>
+
+</blockquote>
+<p><span class="cap-img"><img src="../assets/wtr/image4.png" style="width:2.55819in;" /><span class="cap-text">Tower Sketch by Lachlan Watts-Tobin</span></span><span class="cap-img"><img src="../assets/wtr/image20.png" style="width:2.69271in;" /><span class="cap-text">Tower Sketch By Alessandro Torres</span></span></p>
+
+<h4 id="section-iv.iii-tools">Section IV.III: Tools:</h4>
+<p>Throughout this class, students have been working towards proficiency with Solidworks and Solidworks-Simulation; thus, naturally, and par requirements of this project were the tools we used to engineer our tower. The three-dimensional modeling capabilities allowed us to flesh out our concepts with ease. Using Finite Element Analysis through Solidworkjs simulations allowed us to assess weak points and reduce areas with excess material. This software is an industry standard and provides a user-friendly interface, which we utilized to complete this project.</p>
+<h4 id="section-iv.iv-simulation-results">Section IV.IV: Simulation Results:</h4>
+<p>As mentioned previously, our team performed rigorous simulations to assess the integrity of our tower section using Solidworks simulations. The concept of Finite Element Analysis is relatively simple; for large structures such as our tower, which are not geometrically defined, this program breaks them down into many calculable “elements,” each possessing the material properties of the tower. Analyzing the interaction of these elements creates a reasonably accurate prediction for the behavior of the tower as a whole. After performing numerous tests, we optimized and achieved good values in Deflection and Factor of Safety (FOS).</p>
+<p><span class="cap-img"><img src="../assets/wtr/image32.png" style="width:4.48647in;" /><span class="cap-text">FEA Comparison of Stress, Strain, Deflection, and Factor of Safety</span></span></p>
+
+<p><span class="cap-img"><img src="../assets/wtr/image8.png" style="width:2.45313in;" /><span class="cap-text">Custom Material for FEA, Material properties of PLA</span></span></p>
+
+<h4 id="section-iv.v-load-vs.-deflection-graph">Section IV.V: Load Vs. Deflection Graph:</h4>
+<p>The key factor we were trying to optimize our tower for was deflection in a single direction. After repeatedly calculating the maximum deflection with 9.8 Newtons(N) of force applied for our drafts, we reached a predicted maximum deflection of 0.15(mm) and a general stiffness of 65.34(N/mm) (General Stiffness formula: S=F(N)[Force]/ 𝛿(mm)[Deflection]). To redouble our prediction's accuracy, we calculated the maximum deflection of 10 data points 0.98N apart, ranging from 0.98N to 9.8N. We found a ~ perfectly linear correlation between the data points, which would be approximately true of real-world tests. This process improved our confidence in our initial predictions regarding the stiffness of our design.</p>
+<p>*Interval: [N=0, N=9.8, ΔN = 0.98]</p>
+<p><img src="../assets/wtr/image6.png" style="width:3.31771in;" /></p>
+
+<h4 id="section-iv.vi-mass-propertiesmodels">Section IV.VI Mass Properties/Models:</h4>
+<p>Finally, after many drafts, concepts, and digital prototypes, we achieved a final design we were confident in for our tower section and the rotor blade. We had completed our design sprint and were ready for the physical testing phase. We utilized additive manufacturing, specifically 3D printing PLA, to create a physical prototype of our design. From that point, we moved to testing our prototype’s power, efficiency, and stiffness in the real world.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image17.png" style="width:1.37038in;" /><span class="cap-text">Final Tower Design by Lachlan Watts-Tobin</span></span><span class="cap-img"><img src="../assets/wtr/image29.png" style="width:2.53169in;" /><span class="cap-text">Final Tower Design Mass Properties Volume = 16.98 in^3</span></span></p>
+
+<p>*Volume not shown in assembly. Volume = 16.98in^3</p>
+<p><span class="cap-img"><img src="../assets/wtr/image33.png" style="width:3.57813in;" /><span class="cap-text">Final Blade Design by Akira Murata</span></span><span class="cap-img"><img src="../assets/wtr/image1.png" style="width:2.64354in;" /><span class="cap-text">Final Blade Mass Properties</span></span></p>
+
+<h3 id="section-v-testing-and-results">Section V: Testing and Results</h3>
+<h4 id="section-v.i-testing-overview">Section V.I: Testing Overview </h4>
+<p>At this point, our group has left the design stage and begun physically testing our finished design. During this process, we will collect real-world data through careful observation, experimentation, and instrumentation. After completing this process, we can reflect on this data and compare it to the predicted results from our extensive Fine Element project analysis. During this stage, we will test three main factors, allowing us to verify our results. First is deflection, which is how much the tower moves as force is applied; after testing this and confirming the weight, we can accurately calculate the Stiffness of our Tower. Next are power and voltage, which we can measure by putting a generator in the tower; with these two values acquired, we can give an accurate calculation of the efficiency of our blade. Overall, this process allows us to verify our predictions about the properties of our design, assess our design, and make improvements in future work based on real-world data.</p>
+<h4 id="section-v.ii-efficiency-testing-procedure">Section V.II: Efficiency Testing Procedure</h4>
+<p>The overall efficiency of the rotor blades is measured by the power it can generate at a fixed 25 mph airstream directly facing the turbine's frontal profile. An anemometer was used to measure the current’s velocity by placing it in front of the turbine blades and adjusting the distance of the air blower to get a precise wind speed of 25 mph at the face of the tower.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image10.png" style="width:3.29688in;" /><span class="cap-text">Measuring wind speed, setting to precisely 25mph</span></span></p>
+
+<p>From there, the motor is connected to the load box (which is the instrument providing data for power (mW ), voltage (V), and current (mA)) and a generator attached to our rotor blades to test these values. As the potentiometer nobs are turned counterclockwise, the rotor's resistance increases. As we found, this increased resistance correlates with an increase in current. The nobs were turned in small increments.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image22.png" style="width:3.17188in;" /><span class="cap-text">Attaching the generator to the load box</span></span></p>
+<blockquote>
+
+</blockquote>
+<p><span class="cap-img"><img src="../assets/wtr/image9.png" style="width:3.37836in;" /><span class="cap-text">Adjusting the Potentiometer</span></span></p>
+<blockquote>
+
+</blockquote>
+<p>Throughout our testing, the power (mW ), voltage (V), and current (mA) of our blades were recorded at each significant interval. Extreme outliers were removed from the data sets. <img src="../assets/wtr/image3.png" style="width:2.00521in;" /></p>
+<p><img src="../assets/wtr/image18.png" style="width:2.1388in;" /></p>
+
+<blockquote>
+
+</blockquote>
+<p><img src="../assets/wtr/image27.png" style="width:3.95332in;" /><img src="../assets/wtr/image30.png" style="width:3.97509in;" /></p>
+<blockquote>
+
+</blockquote>
+<p><strong>Peak power: 1.209 W</strong></p>
+<h4 id="section-v.iii-stiffness-testing-procedure">Section V.III: Stiffness Testing Procedure</h4>
+<p>An eyebolt is secured to the back section of the generator cradle while the generator itself is removed. A string is attached to the bolt and pulled horizontally through a pulley system. Small weights are connected to the string in increments of 100g and end at 1000g. A dial indicator is positioned to the back and pressed against a spacer. The dial indicator is zeroed out to indicate its position with 0 grams of weight. As weight is added, the dial indicator records the distance the turbine deflects from that position. Displacement is recorded at each interval of 100g.<img src="../assets/wtr/image13.png" style="width:1.83854in;" /></p>
+<p><strong>Stiffness: 17.3 N/mm</strong></p>
+<p><strong>Correlation Factor:</strong> <span class="math inline">\(R^{2} = 0.999\ \)</span></p>
+<p><strong>Total Weight: 1198.1g</strong></p>
+<p><strong>Accurate Weight = (Total Weight - 895g): 303.1g</strong></p>
+
+<h4 id="section-v.iv-results-calculating-efficiencystiffness">Section V.IV: Results &amp; Calculating Efficiency/Stiffness </h4>
+<p>Efficiency is calculated by comparing theoretical power and experimental power. Theoretical power was calculated using <span class="math inline">\({P_{\text{wind}}}_{} = \frac{1}{2}\rho Av^{3}\)</span> a velocity of 25 mph and a blade diameter of 5.8 inches, which was 10.85 W. According to our tables, the peak power was 1.209 W, meaning our turbine was <strong>11.11% efficient.</strong> <span class="math inline">\(\frac{1.209}{10.85} \approx 0.1111\)</span></p>
+<p>Stiffness is a more straightforward equation and can be derived by comparing the force applied to the deflection. This is done through the quotient of the Force applied in Newtons and the measured deflection in millimeters. Given that our maximum deflection was 0.52 millimeters when 9.8 Newtons of force were used, we can calculate our stiffness as 9.8N/0.52mm = <strong>17.7(N)(mm^-1)</strong>.</p>
+<p>Given these results, there is still much room for improvement and optimization within the scope of our design. While our blade far exceeded the required output in terms of Power(Watts), our design had an efficiency of 11.11%, which is far lower than the typical range of efficiency among wind turbines in the US (~37%) (University of Michigan). Concerning the stiffness of our tower, our experimental maximum deflection far exceeded our predicted maximum deflection; consequential, our experimental stiffness was 26.4%(17.3/65.34) of our predicted stiffness. While our design thoroughly exceeded requirements regarding stiffness, it is clear that we need to revisit our predictive load cases and calculations and investigate the manufacturing process to account for this error.</p>
+<p>In summary, through careful experimentation, we created a successful wind turbine design that exceeded the requirements. Given this data, future work can improve our design and optimize its weight, stiffness, and efficiency. Our team learned a great deal about experimentation through this process, and it will be able to more effectively predict and further optimize the characteristics of our future designs.</p>
+<h4 id="section-v.v-cad-drawings">Section V.V: CAD Drawings</h4>
+<p>Below are pictures of our final designs, including a drawing and an exploded view of the tower sections we used in the deflection test. These visuals accurately represent the precision and accuracy that our group prioritized in the design process. This also showcases the strong connection between the upper and lower sections of the tower, which our team designed to ensure a rigid connection.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image5.png" style="width:3.40104in;" /><span class="cap-text">Final Blade Render</span></span><span class="cap-img"><img src="../assets/wtr/image35.png" style="width:2.94271in;" /><span class="cap-text">Final Tower Exploded View</span></span></p>
+
+<p><span class="cap-img"><img src="../assets/wtr/image21.png" style="width:3.28646in;" /><span class="cap-text">Final Tower Drawing</span></span> <span class="cap-img"><img src="../assets/wtr/image17.png" style="width:2.06958in;" /><span class="cap-text">Final Tower Design by Lachlan Watts-Tobin</span></span></p>
+
+<h3 id="section-vi-conclusions">Section VI: Conclusions</h3>
+<p>This project successfully demonstrated the possibility of designing and fabricating a wind turbine using modern engineering tools. We honed our SolidWorks skills throughout the semester, and we were able to use CAD models and 3D printing to satisfy testing procedures. During testing, the turbine generated a peak power output of 1.209 W, exhibited a stiffness of 17.3 N/mm, and weighed 303.1 g, surpassing the structural and power benchmarks set forth for the project.</p>
+<p>Through this process, our team gained a deeper understanding of the interplay between aerodynamic efficiency and structural stability in wind turbine design. With the use of the NACA 4412 blade profile, a tri-blade configuration and angle of attack and twist were key factors in achieving the turbine’s performance. The project also underscored the importance of collaboration and the introduction to engineering, where we computed an analysis of an object's efficiency with experimental testing, mirroring real-world engineering practices.</p>
+<p>However, our turbine's efficiency, calculated at 11.11%, falls short of the ~37% efficiency typical of modern full-scale wind turbines. This highlights opportunities for future improvements, such as refining blade geometry - perhaps a different blade design - or enhancing the blades' characteristics. While our design performed well under the constraints of this project, these enhancements could bridge the gap between prototype and industry standards, aligning with the broader goal of advancing sustainable energy technologies.</p>
+<p>Overall, this project fulfilled its objectives and provided a valuable learning experience in renewable energy and engineering design, preparing our team for more complex engineering challenges ahead.</p>
+<h3 id="section-vii-recommendations-for-future-work">Section VII: Recommendations for Future Work</h3>
+<p>After revisiting our design process, we have identified some improvements that could bolster its results and overall effectiveness. Increasing load distribution and modifying the blade tips would both improve results. Both of these modifications can be easily implemented for future work.</p>
+<p>Increasing the tower-to-platform contact area for future improvements ensures better load distribution from the tower’s top. By spreading the weight over a significantly larger surface, this modification substantially enhances overall structural stability, reduces the likelihood of wobble or tilt, and minimizes tower deflection. This straightforward adjustment improves the turbine’s durability, efficiency, and long-term performance under varying operating conditions.</p>
+<p>Blade tip modification is another recommendation for future work. Incorporating blade tip modifications in the blade design - such as winglets or curvature adjustments - can significantly enhance wind turbine blade performance. These modifications reduce the intensity of tip vortices, which are swirling flows that form at the blade tips and cause energy losses(Abdelghany et al., 2023). The blade experiences less induced drag by mitigating these vortices, increasing its overall aerodynamic efficiency. The improved airflow distribution along the blade also leads to more uniform loading, potentially resulting in longer blade life and reduced maintenance costs. In addition, refined tip designs can contribute to quieter turbine operation, as smoother airflow reduces noise generated by turbulent wake regions.</p>
+<p><span class="cap-img"><img src="../assets/wtr/image24.png" style="width:4.84896in;" /><span class="cap-text">Turbine blade highlighting Winglet Cant</span></span></p>
+
+<h3 id="section-viii-references">Section VIII: References</h3>
+<blockquote>
+<p>Batu, T., Lemu, H. G., Negash, B., Beyene, E., Tirfe, D., Hailemichael, E., &amp; Alemneh, S. (2024). Optimal airfoil selection for small horizontal axis wind turbine blades: A multi-criteria approach. <em>Advances in Mechanical and Materials Engineering</em>, <em>41</em>, 57-68. https://doi.org/10.7862/rm.2024.6</p>
+<p>Abdelghany, E. S., Sarhan, H. H., Alahmadi, R., &amp; Farghaly, M. B. (2023). Study the Effect of Winglet Height Length on the Aerodynamic Performance of Horizontal Axis Wind Turbines Using Computational Investigation. <em>Energies</em>, <em>16</em>(13), 5138. https://doi.org/10.3390/en16135138</p>
+<p>Adeyeye, Kehinde Adeseye, et al. “The Effect of the Number of Blades on the Efficiency of a Wind Turbine.” <em>IOP Conference Series Earth and Environmental Science</em>, vol. 801, no. 1, June 2021, p. 012020. https://doi.org/10.1088/1755-1315/801/1/012020.</p>
+<p>Administrator. “Wind Turbine Blade Design, Flat, Bent or Curved.” <em>Alternative Energy Tutorials</em>, www.alternative-energy-tutorials.com/wind-energy/wind-turbine-blade-design.html.</p>
+<p>“Wind Energy Factsheet.” <em>Center for Sustainable Systems</em>, css.umich.edu/publications/factsheets/energy/wind-energy-factsheet#:~:text=The%20theoretical%20maximum%20efficiency%20of,passes%20through%20the%20rotor%20area.</p>
+<p>https://www.nmmesa.org/wp-content/uploads/2019/10/Aerodynamics-of-Wind-Turbine-Blades.pdf</p>
+<p>https://iopscience.iop.org/article/10.1088/1755-1315/801/1/012020/pdf#:~:text=So%2C%20a%20three%2Dblade%20turbine,and%20minimum%20stress%20%5B9%5D</p>
+<p>https://iopscience.iop.org/article/10.1088/1755-1315/801/1/012020/pdf#:~:text=So%2C%20a%20three%2Dblade%20turbine,and%20minimum%20stress%20%5B9%5D</p>
+<p><em>Electricity generation from wind</em>. (2023, April 20). Eia.gov; U.S. Energy Information Administration. https://www.eia.gov/energyexplained/wind/electricity-generation-from-wind.php</p>
+<p><em>Wind Energy Basics | NREL</em>. (2019). Nrel.gov; The National Renewable Energy Laboratory. https://www.nrel.gov/research/re-wind.html</p>
+<p>Wind Energy Technologies Office. (2024). <em>How Do Wind Turbines Work?</em> Office of Energy Efficiency and Renewable Energy; U.S. Department of Energy. https://www.energy.gov/eere/wind/how-do-wind-turbines-work</p>
+<p><em>Wind Turbine Design for a Wind Turbine System</em>. (n.d.). Alternative Energy Tutorials. https://www.alternative-energy-tutorials.com/wind-energy/wind-turbine-design.html</p>
+</blockquote>
+        </div>
+
+        <p class="back-to-top-wrap">
+          <a class="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+        </p>
       </section>
     </main>
 

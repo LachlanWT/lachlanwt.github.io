@@ -122,6 +122,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 /* ---------------- Main content ---------------- */
 .main {
   flex: 1;
+  min-width: 0;           /* allow the column to shrink so content reflows to fit */
   padding: 0 3rem 2rem;   /* top spacing comes from the header itself */
 }
 
@@ -227,6 +228,163 @@ hr {
 
 /* Back link on project detail pages */
 .back-link { display: inline-block; margin-bottom: 1rem; font-weight: 600; }
+
+/* Resume-bullet callout at the top of a project page */
+.project-highlights {
+  background: #eef5fc;              /* light blue tint */
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.6rem 1.4rem;
+  margin: 0.5rem 0 2rem;
+}
+.project-highlights ul { margin: 0; padding-left: 1.2rem; }
+.project-highlights li { margin: 0.15rem 0; }
+
+/* Simple tag row for tools / skills */
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.tag-row li {
+  background: var(--sidebar-bg);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* ---- Imported report content (figures, captions, TOC) ---- */
+.report-img {
+  display: block;
+  max-width: 560px;
+  width: 100%;
+  height: auto;
+  margin: 0.75rem auto 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.img-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+.img-row .report-img { flex: 1 1 44%; min-width: 220px; max-width: none; margin: 0; }
+
+.fig-caption { color: var(--muted); font-size: 0.9rem; margin: 0.75rem 0 0.25rem; }
+.report-eyebrow {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.report-byline { color: var(--muted); font-style: italic; margin-top: 0; }
+
+.toc-table { border-collapse: collapse; width: 100%; max-width: 520px; margin: 0.5rem 0 1rem; }
+.toc-table td { border: 1px solid var(--border); padding: 0.4rem 0.75rem; font-size: 0.95rem; }
+.toc-table tr:first-child td { font-weight: 700; background: var(--sidebar-bg); }
+
+/* ---- Imported (pandoc) report body ---- */
+.report h2 { margin-top: 2.5rem; }
+.report h3 { margin-top: 2rem; }
+.report h4 { margin-top: 1.5rem; }
+/* offset anchored sections so TOC jumps don't hide them under the top bar */
+.report h2, .report h3, .report h4 { scroll-margin-top: 90px; }
+.report img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.report table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 640px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.report th, .report td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+}
+.report thead th { background: var(--sidebar-bg); }
+.report .math { overflow-x: auto; }   /* keep wide equations from overflowing */
+
+/* Keep long reference URLs and wide tables from causing sideways scroll */
+.report { overflow-wrap: break-word; }
+.report a { overflow-wrap: anywhere; }
+.report table { display: block; max-width: 100%; overflow-x: auto; }
+
+/* Image with a hover caption: dark gradient footer + white text,
+   no image movement, description pulled from the report appendix. */
+.report .cap-img {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.25rem auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0;
+}
+.report .cap-img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.report .cap-img .cap-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.2rem 0.9rem 0.7rem;
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+  pointer-events: none;
+}
+.report .cap-img:hover .cap-text { opacity: 1; }
+
+/* Collaborator email buttons */
+.collab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+.collab-btn {
+  display: inline-block;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  color: var(--text);
+  font-weight: 600;
+  transition: transform var(--speed) var(--ease-soft);
+}
+.collab-btn:hover { transform: translateY(-2px); text-decoration: none; opacity: 1; }
+
+/* Back-to-top button at the bottom of a project page */
+.back-to-top-wrap { text-align: center; margin: 2.5rem 0 1rem; }
+.back-to-top {
+  display: inline-block;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  color: var(--text);
+  font-weight: 600;
+  transition: transform var(--speed) var(--ease-soft);
+}
+.back-to-top:hover { transform: translateY(-2px); text-decoration: none; opacity: 1; }
 
 /* =========================================================
    Resume embed
