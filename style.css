@@ -353,6 +353,21 @@ hr {
 }
 .report .cap-img:hover .cap-text { opacity: 1; }
 
+/* Groups of figures lay out side by side and wrap into a grid */
+.report p.fig-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1.25rem 0;
+}
+.report p.fig-row .cap-img,
+.report p.fig-row > img {
+  margin: 0;
+  max-width: min(100%, 340px);
+}
+
 /* Collaborator email buttons */
 .collab-buttons {
   display: flex;
