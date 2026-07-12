@@ -26,27 +26,67 @@
         <h1>Downhill Mountain Bike</h1>
         <p class="year">2025</p>
 
-        <!-- HIGHLIGHTS - your resume bullets for this project. -->
         <div class="project-highlights">
           <ul>
-            <li>Resume bullet - what you built or achieved (with a metric if possible).</li>
-            <li>Resume bullet - a key technical contribution.</li>
-            <li>Resume bullet - an outcome or result.</li>
+            <li>Manufactured the frame's CFRP tubes on a custom filament winder and post-processing system.</li>
+            <li>Designed a G-code generator to wind variable cross-section tubes, enabling the tapered top tube.</li>
+            <li>Machined aluminum lugs and ran epoxy tensile testing to select the frame's structural adhesive.</li>
           </ul>
         </div>
 
-        <!-- COLLABORATORS - one button per teammate; fill in each email after to=.
-             Delete this whole section if the project was solo. -->
         <h2>Collaborators</h2>
         <div class="collab-buttons">
-          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=" target="_blank" rel="noopener">Collaborator Name</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/pranav-amarnath/" target="_blank" rel="noopener">Pranav Amarnath</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/zacharywliu/" target="_blank" rel="noopener">Zach Liu</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/kyle-blanset/" target="_blank" rel="noopener">Kyle Blanset</a>
+          <a class="collab-btn" href="https://bikebuilders.studentorg.berkeley.edu/" target="_blank" rel="noopener">Bike Builders of Berkeley</a>
         </div>
 
         <hr>
 
-        <!-- CONTENT - add the writeup, figures, equations, etc. here. -->
         <div class="report">
-          <p>PAGE UNDER CONSTRUCTION</p>
+
+          <p><img src="../assets/dmb/frame-model.jpg" alt="Frame CAD" style="max-width:100%;border-radius:8px;"></p>
+
+          <h2>Overview</h2>
+          <p>Built with Bike Builders of Berkeley, this is a fully custom downhill mountain bike frame engineered to survive the high-impact loads of a downhill race course. Downhill riding puts extreme, repeated stress on a frame, so the design had to be stiff enough to handle hard landings and rough terrain while staying light enough to be competitive. To get there, we built the frame from carbon fiber (CFRP) tubes bonded to 3D-printed aluminum lugs, a hybrid approach that pairs the exceptional stiffness-to-weight of carbon with the complex geometry, precise tolerances, and suspension hardpoints that are far easier to achieve in machined metal. Rather than buy off-the-shelf tubing, we manufactured every carbon tube in house on tooling we designed and built ourselves, which gave us full control over each tube's wall thickness, layup, and cross-section. On the team, Pranav Amarnath is the lead composites and manufacturing engineer and I am the lead electrical and components engineer, and we worked closely together across the entire build.</p>
+
+          <h2>Composites and manufacturing</h2>
+          <p>I manufactured the frame's CFRP tubes using the custom filament winder and post-processing system I helped design and build (see the <a href="../projects/cffw.html">Carbon Fiber Filament Winder</a> project). Each tube starts as continuous carbon tow, wet out with epoxy and wound under controlled tension onto a sectioned mandrel that defines its inner shape. Once wound, the tube is vacuum bagged and cured, then post-processed to compact the laminate, drive out excess resin, and leave a clean structural surface. Building the tubes ourselves meant we could tune the fiber orientation and resin content for the loads each part of the frame would see, and produce shapes that simply are not available as stock tubing.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/winder-gen2.jpg" alt="Filament winder"><span class="cap-text">Filament winder, second generation</span></span>
+            <span class="cap-img"><img src="../assets/dmb/mandrel.jpg" alt="Mandrel"><span class="cap-text">Mandrel ready to wind</span></span>
+          </p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/bagging.jpg" alt="Vacuum bagging"><span class="cap-text">Vacuum bag processing</span></span>
+            <span class="cap-img"><img src="../assets/dmb/finished-tube.jpg" alt="Finished tube"><span class="cap-text">Finished tube</span></span>
+          </p>
+
+          <h2>Machining and testing</h2>
+          <p>Alongside the composites work, I helped machine the aluminum lugs and pivot hardware that tie the frame together. The lugs come off the printer close to net shape, so we post-machined the critical features by hand, reaming bearing bores and facing mating surfaces to tolerance, and I built custom fixtures and spacers to hold each part so that bored holes stayed concentric and the suspension pivots would line up correctly. Because the whole frame relies on the bond between the carbon tubes and the aluminum lugs, we also had to be certain we were using the right adhesive. I ran a set of epoxy tensile tests on an Instron machine, bonding sample coupons with several candidate epoxies and pulling them to failure to measure lap-shear strength, then used those results to choose the adhesive that performed best for the final frame.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/machining1.jpg" alt="Machining"><span class="cap-text">Machining lugs and hardware</span></span>
+            <span class="cap-img"><img src="../assets/dmb/machining2.jpg" alt="Machining"><span class="cap-text">Machining lugs and hardware</span></span>
+            <span class="cap-img"><img src="../assets/dmb/machining3.jpg" alt="Machining"><span class="cap-text">Machining lugs and hardware</span></span>
+          </p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/tensile1.jpg" alt="Tensile testing"><span class="cap-text">Epoxy tensile testing</span></span>
+            <span class="cap-img"><img src="../assets/dmb/tensile2.jpg" alt="Tensile testing"><span class="cap-text">Epoxy tensile testing</span></span>
+          </p>
+
+          <h2>The top tube</h2>
+          <p>The top tube was my work from end to end. Most of the frame's tubes are constant in cross-section, which makes them straightforward to wind, but the top tube changes shape along its length, and a standard winding process simply cannot produce it. To solve that, I designed a G-code generator that computes the winding paths for tubes with a variable, non-constant cross-section, adjusting the fiber layup and machine motion as the tube's profile changes along its length (see the <a href="../projects/gcgs.html">GCode Generator and Sender</a> project). With that tool, I was able to wind the tapered top tube directly, taking the part from a parametric definition all the way to a finished carbon component. It was the piece of the frame I owned completely, from the tooling and the software through to the physical tube.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/gcode-test.jpg" alt="G-code test"><span class="cap-text">Testing variable cross-section G-code generation</span></span>
+            <span class="cap-img"><img src="../assets/dmb/tapered.jpg" alt="Winding tapered tube"><span class="cap-text">Winding the tapered tube</span></span>
+          </p>
+
+          <h2>Results</h2>
+          <p>With the tubes wound and finished and the lugs machined and bonded, we assembled everything into a complete, rideable downhill frame. Watching the parts I manufactured come together into a working bike, from raw carbon tow and printed metal to a frame that can actually take a downhill course, was the most rewarding part of the project, and it gave the whole team real hardware to test, ride, and keep improving on the next iteration.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/dmb/assembly.jpg" alt="Frame assembly"><span class="cap-text">Frame assembly</span></span>
+            <span class="cap-img"><img src="../assets/dmb/finished-bike.jpg" alt="Finished bike"><span class="cap-text">The finished bike</span></span>
+          </p>
         </div>
 
         <p class="back-to-top-wrap">

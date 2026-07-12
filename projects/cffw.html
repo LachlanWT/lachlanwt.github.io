@@ -26,27 +26,72 @@
         <h1>Carbon Fiber Filament Winder</h1>
         <p class="year">2025</p>
 
-        <!-- HIGHLIGHTS - your resume bullets for this project. -->
         <div class="project-highlights">
           <ul>
-            <li>Resume bullet - what you built or achieved (with a metric if possible).</li>
-            <li>Resume bullet - a key technical contribution.</li>
-            <li>Resume bullet - an outcome or result.</li>
+            <li>Designed the tow head, carbon routing, and hex-shaft rotation system for a custom carbon fiber filament winder.</li>
+            <li>Engineered sectioned, dovetail-jointed mandrels and a repeatable resin-ratio method for consistent CFRP tubes.</li>
+            <li>Built a disconnectable vacuum system and heat-shrink post-processing to improve tube surface finish and quality.</li>
           </ul>
         </div>
 
-        <!-- COLLABORATORS - one button per teammate; fill in each email after to=.
-             Delete this whole section if the project was solo. -->
         <h2>Collaborators</h2>
         <div class="collab-buttons">
-          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=" target="_blank" rel="noopener">Collaborator Name</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/pranav-amarnath/" target="_blank" rel="noopener">Pranav Amarnath</a>
+          <a class="collab-btn" href="https://bikebuilders.studentorg.berkeley.edu/" target="_blank" rel="noopener">Bike Builders of Berkeley</a>
         </div>
 
         <hr>
 
-        <!-- CONTENT - add the writeup, figures, equations, etc. here. -->
         <div class="report">
-          <p>PAGE UNDER CONSTRUCTION</p>
+
+          <p><img src="../assets/cffw/cover.jpg" alt="Carbon fiber tube" style="max-width:100%;border-radius:8px;"></p>
+
+          <h2>Overview</h2>
+          <p>Built with Bike Builders of Berkeley, this project was a custom carbon fiber filament winder and post-processing system used to manufacture the CFRP (carbon fiber reinforced polymer) tubes for our downhill mountain bike frame. Carbon tow is wound under tension around removable mandrels, cured, and finished into structural tubes that bond to 3D-printed aluminum lugs. I focused on the winding hardware, the tooling, the resin process, and the post-processing that turns a raw wound tube into a clean, finished part.</p>
+
+          <h2>Winding and tooling</h2>
+          <p>I designed the tow head and the carbon routing system that guides and tensions the fiber as it feeds onto the mandrel, along with the hex shaft and rotation system that mounts to the motor and spins the mandrel throughout a wind.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/towhead-model.jpg" alt="Tow head CAD"><span class="cap-text">Tow head (CAD)</span></span>
+            <span class="cap-img"><img src="../assets/cffw/towhead.jpg" alt="Tow head"><span class="cap-text">Tow head</span></span>
+          </p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/towholder-model.jpg" alt="Tow holder CAD"><span class="cap-text">Tow holder (CAD)</span></span>
+            <span class="cap-img"><img src="../assets/cffw/towholder.jpg" alt="Tow holder"><span class="cap-text">Tow holder</span></span>
+          </p>
+          <p>To keep the mandrels rigid while still 3D printable, I designed them in multiple sections joined by dovetail joints. This let us print each mandrel in pieces and assemble a stiff, accurate core that held its shape under winding tension.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/mandrel1.jpg" alt="Mandrel"><span class="cap-text">Sectioned mandrel with dovetail joints</span></span>
+            <span class="cap-img"><img src="../assets/cffw/mandrel2.jpg" alt="Mandrel"><span class="cap-text">Sectioned mandrel with dovetail joints</span></span>
+            <span class="cap-img"><img src="../assets/cffw/mandrel3.jpg" alt="Mandrel"><span class="cap-text">Sectioned mandrel with dovetail joints</span></span>
+          </p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/winding1.jpg" alt="Filament winding"><span class="cap-text">Filament winding</span></span>
+            <span class="cap-img"><img src="../assets/cffw/winding2.jpg" alt="Filament winding"><span class="cap-text">Filament winding</span></span>
+          </p>
+
+          <h2>Resin control</h2>
+          <p>To control the fiber-to-resin ratio in each tube, I developed a simple, repeatable method: weighing the tow spool before and after a wind to measure the fiber mass, then comparing it to the final cured tube weight to back out the resin content. This gave us a consistent way to target resin ratios across tubes.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/uni-fiber.jpg" alt="Adding unidirectional fiber"><span class="cap-text">Adding unidirectional fiber</span></span>
+            <span class="cap-img"><img src="../assets/cffw/tube-bag.jpg" alt="Wound tube in bag"><span class="cap-text">Wound tube in a vacuum bag</span></span>
+          </p>
+
+          <h2>Post-processing</h2>
+          <p>I designed the post-processing process end to end. I built a vacuum chamber and set up a new disconnectable vacuum system so bags could be sealed and left to cure off the pump, even at home, which freed up the pump between runs. I also designed a heat-shrink system that wraps the wound tube to apply extra pressure, squeeze out excess resin, and produce an optimal surface finish.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/vacuum.jpg" alt="Vacuum setup"><span class="cap-text">Vacuum chamber and disconnectable vacuum system</span></span>
+            <span class="cap-img"><img src="../assets/cffw/heatshrink.jpg" alt="Heat shrink"><span class="cap-text">Heat-shrink surface finishing</span></span>
+          </p>
+
+          <h2>Results</h2>
+          <p>Together, these systems produced the finished CFRP tubes for the frame, which were bonded onto the aluminum lugs to complete the bike.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/cffw/final-tubes.jpg" alt="Finished tubes"><span class="cap-text">Finished tubes</span></span>
+            <span class="cap-img"><img src="../assets/cffw/tubes-on-frame.jpg" alt="Tubes on frame"><span class="cap-text">Tubes mounted on the frame</span></span>
+            <span class="cap-img"><img src="../assets/cffw/the-bike.jpg" alt="Finished bike"><span class="cap-text">The finished bike</span></span>
+            <span class="cap-img"><img src="../assets/cffw/booth.jpg" alt="At the booth"><span class="cap-text">At the booth</span></span>
+          </p>
         </div>
 
         <p class="back-to-top-wrap">

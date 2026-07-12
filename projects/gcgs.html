@@ -26,27 +26,37 @@
         <h1>GCode Generator and Sender</h1>
         <p class="year">2026</p>
 
-        <!-- HIGHLIGHTS - your resume bullets for this project. -->
         <div class="project-highlights">
           <ul>
-            <li>Resume bullet - what you built or achieved (with a metric if possible).</li>
-            <li>Resume bullet - a key technical contribution.</li>
-            <li>Resume bullet - an outcome or result.</li>
+            <li>Wrote a Python application that generates winder G-code for carbon fiber tubes from a few design parameters.</li>
+            <li>Supports variable, non-constant cross-section tubes that standard winding tools cannot produce.</li>
+            <li>Building a GUI and integrating Universal Gcode Sender into a single app to run the filament winder end to end.</li>
           </ul>
         </div>
 
-        <!-- COLLABORATORS - one button per teammate; fill in each email after to=.
-             Delete this whole section if the project was solo. -->
-        <h2>Collaborators</h2>
+        <h2>Links / info</h2>
         <div class="collab-buttons">
-          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=" target="_blank" rel="noopener">Collaborator Name</a>
+          <a class="collab-btn" href="https://github.com/BerkeleyBikeBuilders/tubeWinder" target="_blank" rel="noopener">GitHub Repository</a>
+          <a class="collab-btn" href="https://bikebuilders.studentorg.berkeley.edu/" target="_blank" rel="noopener">Bike Builders of Berkeley</a>
         </div>
 
         <hr>
 
-        <!-- CONTENT - add the writeup, figures, equations, etc. here. -->
         <div class="report">
-          <p>PAGE UNDER CONSTRUCTION</p>
+
+          <p><img src="../assets/gcgs.png" alt="G-code generator GUI (in development)" style="max-width:100%;border-radius:8px;"></p>
+
+          <h2>Overview</h2>
+          <p>This is the G-code generator I wrote for our carbon fiber filament winder at Bike Builders of Berkeley. The winder builds tubes by wrapping carbon tow around a rotating mandrel, and the motion of that wrap has to be computed precisely, with the right wind angle, coverage, and layer count for a given tube. I wrote this tool to generate that motion automatically: from a small set of design parameters, such as tube dimensions, wind angle, and number of layers, it produces the complete G-code the winder runs, so we can go from a tube specification to a machine-ready program in seconds instead of authoring paths by hand.</p>
+
+          <h2>Purpose</h2>
+          <p>The tool's most important capability is handling tubes that do not have a constant cross-section. A standard winding program assumes a fixed diameter, but many of our tubes, like the tapered top tube on our downhill frame (see the <a href="../projects/dmb.html">Downhill Mountain Bike</a> project), change shape along their length. My generator computes the winding path for these variable-profile tubes, adjusting the machine's motion continuously as the cross-section changes, which is what makes those parts possible to manufacture. It gives the team a fast, repeatable way to turn a tube design into a wind, and it removes the manual, error-prone step of writing machine code for every new tube.</p>
+
+          <h2>Development</h2>
+          <p>I wrote the project entirely myself, in Python. It started as a parameter-driven script and has grown into an application with a graphical interface (currently under development) so that anyone on the team can set up a wind without touching code. The GUI exposes the tube parameters, lets you preview the result, and exports the G-code, which lowers the barrier to using the winder and keeps our tube manufacturing consistent from person to person.</p>
+
+          <h2>What I am working on now</h2>
+          <p>I am currently integrating the Universal Gcode Sender (UGS) source code into the application so that generating and sending G-code to the winder happen in the same place. The goal is a single, one-stop program for running our filament winder: define the tube, generate the winding path, and stream it straight to the machine, all from one interface. This turns what is currently a multi-tool workflow into one cohesive application built specifically around how our winder works.</p>
         </div>
 
         <p class="back-to-top-wrap">

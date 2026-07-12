@@ -388,19 +388,15 @@ hr {
 }
 .collab-btn:hover { transform: translateY(-2px); text-decoration: none; opacity: 1; }
 
-/* Back-to-top button at the bottom of a project page */
+/* Back-to-top link at the bottom of a project page (plain text + arrow) */
 .back-to-top-wrap { text-align: center; margin: 2.5rem 0 1rem; }
 .back-to-top {
   display: inline-block;
-  background: var(--sidebar-bg);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.5rem 1.2rem;
-  color: var(--text);
-  font-weight: 600;
-  transition: transform var(--speed) var(--ease-soft);
+  color: var(--muted);
+  font-weight: 500;
+  transition: color var(--speed) var(--ease), opacity var(--speed) var(--ease);
 }
-.back-to-top:hover { transform: translateY(-2px); text-decoration: none; opacity: 1; }
+.back-to-top:hover { color: var(--text); text-decoration: none; opacity: 1; }
 
 /* =========================================================
    Resume embed
