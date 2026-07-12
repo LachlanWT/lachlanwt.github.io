@@ -26,27 +26,32 @@
         <h1>Scheme Language Interpreter</h1>
         <p class="year">2025</p>
 
-        <!-- HIGHLIGHTS - your resume bullets for this project. -->
         <div class="project-highlights">
           <ul>
-            <li>Resume bullet - what you built or achieved (with a metric if possible).</li>
-            <li>Resume bullet - a key technical contribution.</li>
-            <li>Resume bullet - an outcome or result.</li>
+            <li>Built an interpreter for a subset of the Scheme language in Python, from parsing through evaluation.</li>
+            <li>Implemented core special forms, user-defined procedures, and lexical scoping with environment frames.</li>
+            <li>Added tail-call optimization so deeply recursive programs run in constant space.</li>
           </ul>
         </div>
 
-        <!-- COLLABORATORS - one button per teammate; fill in each email after to=.
-             Delete this whole section if the project was solo. -->
         <h2>Collaborators</h2>
         <div class="collab-buttons">
-          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=" target="_blank" rel="noopener">Collaborator Name</a>
+          <a class="collab-btn" href="https://cs61a.org/" target="_blank" rel="noopener">CS 61A</a>
+        </div>
+
+        <h2>Links / info</h2>
+        <div class="collab-buttons">
+          <a class="collab-btn" href="https://github.com/LachlanWT/SchemeInterpreter" target="_blank" rel="noopener">GitHub Repository</a>
         </div>
 
         <hr>
 
-        <!-- CONTENT - add the writeup, figures, equations, etc. here. -->
         <div class="report">
-          <p>PAGE UNDER CONSTRUCTION</p>
+          <h2>Overview</h2>
+          <p>This was the final project for CS 61A (Structure and Interpretation of Computer Programs). I wrote an interpreter for a subset of the Scheme programming language in Python. The interpreter runs a full read-eval-print loop: it reads Scheme source, parses it into expressions, evaluates those expressions against an environment, and prints the result.</p>
+
+          <h2>What I built</h2>
+          <p>I implemented the core special forms (define, lambda, if, cond, and, or, let, begin, and quotation), user-defined procedures with lexical scoping through environment frames, and a library of built-in procedures. The interpreter also performs tail-call optimization, so deeply recursive Scheme programs run in constant space instead of overflowing the stack. Building a language end to end was a hands-on look at how code is actually evaluated, from parsing through closures and environments.</p>
         </div>
 
         <p class="back-to-top-wrap">
