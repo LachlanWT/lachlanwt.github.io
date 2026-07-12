@@ -280,14 +280,13 @@ hr {
 
 .toc-table { border-collapse: collapse; width: 100%; max-width: 520px; margin: 0.5rem 0 1rem; }
 .toc-table td { border: 1px solid var(--border); padding: 0.4rem 0.75rem; font-size: 0.95rem; }
-.toc-table tr:first-child td { font-weight: 700; background: var(--sidebar-bg); }
 
 /* ---- Imported (pandoc) report body ---- */
 .report h2 { margin-top: 2.5rem; }
 .report h3 { margin-top: 2rem; }
 .report h4 { margin-top: 1.5rem; }
 /* offset anchored sections so TOC jumps don't hide them under the top bar */
-.report h2, .report h3, .report h4 { scroll-margin-top: 90px; }
+.report h2, .report h3, .report h4, .report .sec-anchor { scroll-margin-top: 90px; }
 .report img {
   display: block;
   max-width: 100%;
@@ -367,6 +366,8 @@ hr {
   margin: 0;
   max-width: min(100%, 340px);
 }
+/* uniform-ratio gallery images (cropped to fit the same box) */
+.report .gallery-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
 /* Collaborator email buttons */
 .collab-buttons {

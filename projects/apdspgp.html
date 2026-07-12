@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Powered Digital Signal Processer Guitar Pedal</title>
+  <title>CalGPT</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chml.js"></script>
 </head>
 <body data-page="projects">
   <script>window.SITE_BASE = "../";</script>
@@ -19,12 +23,99 @@
       <section class="content">
         <a class="back-link" href="../projects.html">&larr; Back to Projects</a>
 
-        <h1>AI Powered Digital Signal Processer Guitar Pedal</h1>
+        <h1>CalGPT</h1>
         <p class="year">2026</p>
 
-        <!-- <img src="../assets/apdspgp.png" alt="AI Powered Digital Signal Processer Guitar Pedal" style="max-width:100%;border-radius:8px;"> -->
+        <div class="project-highlights">
+          <ul>
+            <li>Built an AI guitar pedal that turns a plain-English tone description into a complete, playable effect chain.</li>
+            <li>Engineered a five-agent AI system that generates and self-corrects effect chains in real time.</li>
+            <li>Bridged AI to hardware with ESP32 firmware DSP, pushing generated parameters to a physical pedal over WiFi.</li>
+          </ul>
+        </div>
 
-        <p>PAGE UNDER CONSTRUCTION</p>
+        <h2>Collaborators</h2>
+        <div class="collab-buttons">
+          <a class="collab-btn" href="https://www.linkedin.com/in/sainikg/" target="_blank" rel="noopener">Sainik Ghosh</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/beliz-soyak-2b8195169/" target="_blank" rel="noopener">Beliz Soyak</a>
+          <a class="collab-btn" href="https://www.linkedin.com/in/austin-tenbrink-aqt/" target="_blank" rel="noopener">Austin Tenbrink</a>
+        </div>
+
+        <h2>Links / info</h2>
+        <div class="collab-buttons">
+          <a class="collab-btn" href="https://github.com/belizsoyak/calgpt" target="_blank" rel="noopener">GitHub Repository</a>
+          <a class="collab-btn" href="https://devpost.com/software/cal-gpt-guitar-pedal-technologies" target="_blank" rel="noopener">Devpost Writeup</a>
+          <a class="collab-btn" href="https://hackberkeley.org/" target="_blank" rel="noopener">Hackathons at Berkeley</a>
+        </div>
+
+        <hr>
+
+        <div class="report">
+
+          <!-- Photos live in ../assets/tbd/ . The two gallery images are web-sized;
+               IMG_4559/4560/4561 are very large (20-28 MB) - resize before adding. -->
+          <p class="fig-row">
+            <img class="gallery-img" src="../assets/calgpt/top1.jpg" alt="CalGPT">
+            <img class="gallery-img" src="../assets/calgpt/top2.jpg" alt="CalGPT">
+          </p>
+
+          <h2>Inspiration</h2>
+          <p>Every guitarist knows the feeling of hearing a tone in their head - "warm 70s blues with a bit of slapback" - and spending twenty minutes hunched over a pedalboard trying to dial it in. We wanted to fix that.</p>
+          <p>The bigger vision is the studio: imagine a producer in a recording session saying "give me something like early Clapton, but darker" and having the effects update automatically on every amp in the room. No interruption. No gear knowledge required. Just describe it and play.</p>
+          <p>For guitarists, that starts with being able to say "SRV" or "psychedelic Hendrix with heavy reverb" and having AI understand exactly what gear, what parameters, what feel - and build it for you.</p>
+
+          <h2>What it does</h2>
+          <p>CalGPT turns a plain-English description of a guitar tone into a complete, ready-to-play effect chain - overdrive, chorus, delay, reverb - with every parameter set.</p>
+          <p>Five AI agents coordinate in real time on Band:</p>
+          <ul>
+            <li><strong>research_agent</strong> - receives the user's message first. If you name an artist, it describes their known gear and signature sound. If you give a vibe, it translates it into gear language ("warm bluesy = mid-gain OD, light reverb, slapback delay"). It then hands off to vibe_agent with that context.</li>
+            <li><strong>vibe_agent</strong> - the core engineer. Takes the research context and generates the full JSON effect chain. Sends it to both critic_agent and memory_agent simultaneously.</li>
+            <li><strong>critic_agent</strong> - reviews the chain for technical issues: high drive with heavy reverb clashes, delay feedback above 0.85 risks runaway. If it finds a problem, it bounces the chain back to vibe_agent with a specific fix. If the chain is solid, it tells memory_agent to log it.</li>
+            <li><strong>memory_agent</strong> - extracts 3-5 tone keywords from every approved chain and builds a running session profile ("warm, vintage, Texas blues, mid-gain"). Sends that profile back to vibe_agent so every new chain reflects what you've been reaching for.</li>
+            <li><strong>feedback_agent</strong> - when you hit thumbs-down, it diagnoses the specific parameter causing the problem and proposes three quick fixes ("Less reverb", "Softer drive", "Add warmth"), then routes the rejection back to vibe_agent to revise.</li>
+          </ul>
+          <p>The agents don't follow a hardcoded pipeline - they communicate through Band's @mention routing. critic_agent can loop vibe_agent back for a revision, and memory_agent can inform future chains. Each agent only activates when @mentioned, which is what makes the coordination feel like a real studio conversation.</p>
+          <p><strong>Studio mode:</strong> Type a tone or an artist name, and watch it render as interactive stomp-box knobs in real time. <strong>Performance mode:</strong> Build a setlist, precompute every song's tone, and flip through them with a single tap mid-set.</p>
+          <p><strong>Real pedal output:</strong> Every tone is pushed straight to the hardware. Our ESP32 firmware receives the settings over WiFi and runs the effect DSP on-device - the same numbers that move the on-screen knobs move the real thing.</p>
+
+          <h2>How we built it</h2>
+          <p>The idea that made everything click is a parameter contract: the AI never sends code to the pedal - it sends numbers. Claude (via the Anthropic API) takes a tone description and returns strict JSON - an ordered chain of effects, each with normalized parameters. That same contract drives two interchangeable engines: a software engine (Spotify's <code>pedalboard</code> in Python) for instant preview, and our ESP32 firmware for the real pedal. So we could build and demo the whole thing in software, then bolt on hardware without rewriting the brain.</p>
+          <ul>
+            <li><strong>Frontend:</strong> React + Tailwind (Vite) - a Studio chat that renders the chain as knobs, plus a Performance view with the setlist and Start / Prev / Next.</li>
+            <li><strong>Backend:</strong> FastAPI (Python). One agent call turns a vibe into a validated effect chain, and every value is clamped server-side so a hallucinated parameter can never reach the audio engine.</li>
+            <li><strong>Audio engine:</strong> <code>pedalboard</code> maps our normalized params to studio-quality effects.</li>
+            <li><strong>Hardware:</strong> ESP32 firmware (C++) with a single DSP function that applies the whole chain to a 32-bit signal sample-by-sample, plus a WiFi endpoint that receives the flat parameter set.</li>
+          </ul>
+          <p>Each effect is its own small equation, composed in signal order: overdrive is a soft-clip waveshaper, vibrato/chorus is a delay line modulated by an LFO, and delay is a feedback line.</p>
+          <p>To run a whole set without depending on flaky venue WiFi, we export the setlist's tones to a CSV and load it onto the pedal's flash (LittleFS) - so the pedal switches tones locally off a footswitch, no network needed mid-song. We built fast and in parallel as a team of four, using Claude Code to move quickly while keeping every change additive so our work never collided.</p>
+
+          <h2>Challenges we ran into</h2>
+          <p>The hardware-software connection didn't make it in time. The architecture is solid - the firmware receives parameters correctly, and the software generates them correctly - but getting the two reliably talking over campus WiFi during the hackathon ran out of clock. Client isolation on the venue network meant our laptop often couldn't reach the pedal directly. The fallback (CSV flash load) works, but the live wireless push that would have closed the loop didn't get a stable demo window. The bridge code exists; we just needed more time.</p>
+
+          <h2>Accomplishments that we're proud of</h2>
+          <p>We got the full pipeline working end to end: describe a tone in plain English, watch it render as knobs, and see the exact parameters land on a real pedal over WiFi. Performance mode flips a live pedal through an entire setlist with one tap. And the swappable-backend architecture means the same agent output drives software or hardware - the thing that let four people build a hardware product in a single weekend without it falling apart.</p>
+
+          <h2>What we learned</h2>
+          <p>We learned how to decouple an AI "brain" from a real-time system with a clean contract, and how much that buys you: testability, parallel teamwork, and a hardware path that never blocks the software demo. We picked up real DSP (waveshaping, modulated delay, comb/allpass reverb), the tradeoffs between offline and real-time audio, and a team git workflow built on small additive changes. Mostly we learned that the hard part of an AI hardware project isn't the AI or the hardware - it's the interface between them.</p>
+
+          <h2>What's next for CalGPT</h2>
+          <ul>
+            <li>Live guitar through the ESP32 with an I2S codec - the full real-time pedal experience.</li>
+            <li>Hands-free setlist switching triggered by a tap pattern on the strings.</li>
+            <li>Voice input - describe tones out loud while you play.</li>
+            <li>The studio vision at scale: a session where the engineer says what they want and every amp in the room updates automatically.</li>
+          </ul>
+
+          <p class="fig-row">
+            <img src="../assets/calgpt/photo1.jpg" alt="CalGPT">
+            <img src="../assets/calgpt/photo2.jpg" alt="CalGPT">
+            <img src="../assets/calgpt/photo3.jpg" alt="CalGPT">
+          </p>
+        </div>
+
+        <p class="back-to-top-wrap">
+          <a class="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+        </p>
       </section>
     </main>
 
