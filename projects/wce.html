@@ -26,27 +26,62 @@
         <h1>Watts &amp; Cseh Electronics</h1>
         <p class="year">2026</p>
 
-        <!-- HIGHLIGHTS - your resume bullets for this project. -->
         <div class="project-highlights">
           <ul>
-            <li>Resume bullet - what you built or achieved (with a metric if possible).</li>
-            <li>Resume bullet - a key technical contribution.</li>
-            <li>Resume bullet - an outcome or result.</li>
+            <li>Co-founded a venture hand-building analog guitar effects pedals from scratch.</li>
+            <li>Designed and built a single-knob treble boost pedal with true bypass.</li>
+            <li>Took the circuit from hand calculations and SPICE simulation to a 3D-printed enclosure.</li>
           </ul>
         </div>
 
-        <!-- COLLABORATORS - one button per teammate; fill in each email after to=.
-             Delete this whole section if the project was solo. -->
+        <!-- COLLABORATORS - 3 partners; fill in each name and email after to=. -->
         <h2>Collaborators</h2>
         <div class="collab-buttons">
-          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=" target="_blank" rel="noopener">Collaborator Name</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=isaac.cseh@gmail.com" target="_blank" rel="noopener">Isaac Cseh</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ammon_obrien@berkeley.edu" target="_blank" rel="noopener">Ammon O'Brien</a>
+          <a class="collab-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=avacatj1s@gmail.com" target="_blank" rel="noopener">Ava Jones</a>
+        </div>
+
+        <h2>Links / info</h2>
+        <div class="collab-buttons">
+          <a class="collab-btn" href="https://github.com/LachlanWT/Watts-Cseh-Electronics" target="_blank" rel="noopener">GitHub Repository</a>
         </div>
 
         <hr>
 
-        <!-- CONTENT - add the writeup, figures, equations, etc. here. -->
         <div class="report">
-          <p>PAGE UNDER CONSTRUCTION</p>
+
+          <p><img src="../assets/wce.png" alt="Watts & Cseh Electronics logo" style="max-width:55%;border-radius:8px;"></p>
+
+          <h2>What we're building</h2>
+          <p>Watts &amp; Cseh Electronics is a small venture a few friends and I started with a simple goal: build guitar effects pedals the way they were made back in the good old days, from a handful of analog parts, a footswitch, and a metal box wired together by hand. Before everything went digital, that simplicity is what gave those old circuits their character, and it is what we set out to recreate by designing our effects from the ground up. Our first finished product is a single-knob treble boost with true bypass, an effect that lifts the high end of a guitar's signal to help it cut through a mix and push an amp harder, with a footswitch that takes the circuit completely out of the signal path when it is off.</p>
+
+          <h2>Designing the circuit</h2>
+          <p>Under the hood it is an analog bandpass filter built around an op-amp gain stage: a high-pass filter cascaded with a low-pass filter that together pass roughly 300 Hz to 15 kHz, the range where a guitar's presence and bite live, while rolling off the muddy lows and harsh highs. I started with hand calculations to pick component values for those cutoffs and a target gain, then verified the transfer function and gain in a SPICE simulation before building anything.</p>
+          <p class="fig-row" style="max-width:70%;">
+            <span class="cap-img"><img src="../assets/wce/schematic.jpg" alt="SPICE schematic of the treble boost circuit"><span class="cap-text">SPICE schematic of the treble boost</span></span>
+          </p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/wce/freq-response.jpg" alt="Simulated frequency response"><span class="cap-text">Simulated frequency response (SPICE)</span></span>
+            <span class="cap-img"><img src="../assets/wce/network.jpg" alt="Measured frequency response on a network analyzer"><span class="cap-text">Measured response on a network analyzer</span></span>
+          </p>
+          <p>Both the simulated and measured curves show the same bandpass shape and a peak gain around 12, so the built circuit matched the design closely.</p>
+
+          <h2>Building and testing it</h2>
+          <p>I built the circuit on a breadboard and tested it into a practice amp, checking it with an oscilloscope at low, mid, and high frequencies and sweeping the full response on a network analyzer. It behaved exactly like a real treble boost should: bright, cutting, and clean, and playing a guitar straight through the breadboard confirmed it.</p>
+          <p class="fig-row">
+            <span class="cap-img"><img src="../assets/wce/breadboard.jpg" alt="Treble boost circuit on a breadboard"><span class="cap-text">The treble boost prototyped on a breadboard</span></span>
+            <span class="cap-img"><img src="../assets/wce/bench-test.jpg" alt="Bench testing the circuit into a guitar amp"><span class="cap-text">Bench testing into a practice amp</span></span>
+          </p>
+
+          <h2>The enclosure</h2>
+          <p>A pedal needs a real box you can stomp on, so rather than buy a stock enclosure I modeled and 3D-printed a custom chassis sized around the circuit board, the knob, the footswitch, and the input and output jacks. Designing it ourselves means every pedal we build next can share the same housing and grow into a consistent product line.</p>
+          <p class="fig-row" style="max-width:45%;">
+            <span class="cap-img"><img src="../assets/wce/chassis.jpg" alt="CAD render of the 3D-printed pedal chassis assembly"><span class="cap-text">Pedal chassis assembly (CAD)</span></span>
+          </p>
+
+          <h2>Where it's going</h2>
+          <p>Next we move the proven circuit off the breadboard onto a soldered board inside the printed enclosure, refine the design, and start on the effects that follow. We are just getting started, but the first pedal proved out the whole process, from a hand-drawn circuit all the way to something you can plug a guitar into and play.</p>
         </div>
 
         <p class="back-to-top-wrap">

@@ -369,24 +369,24 @@ hr {
 /* uniform-ratio gallery images (cropped to fit the same box) */
 .report .gallery-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
-/* Collaborator email buttons */
+/* before/after arrow between two figures in a fig-row */
+.report .ba-arrow { align-self: center; font-size: 2rem; color: var(--muted); padding: 0 0.25rem; }
+
+/* Collaborator / link names (plain underlined hyperlinks) */
 .collab-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0.5rem 0 1rem;
+  gap: 0.25rem 1.2rem;
+  margin: 0.4rem 0 1rem;
 }
 .collab-btn {
-  display: inline-block;
-  background: var(--sidebar-bg);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.4rem 1rem;
-  color: var(--text);
+  display: inline;
+  color: var(--accent);
   font-weight: 600;
-  transition: transform var(--speed) var(--ease-soft);
+  text-decoration: underline;
+  transition: color var(--speed) var(--ease-soft);
 }
-.collab-btn:hover { transform: translateY(-2px); text-decoration: none; opacity: 1; }
+.collab-btn:hover { color: var(--text); text-decoration: underline; opacity: 0.85; }
 
 /* Back-to-top link at the bottom of a project page (plain text + arrow) */
 .back-to-top-wrap { text-align: center; margin: 2.5rem 0 1rem; }
