@@ -69,41 +69,26 @@ function buildSidebar() {
   `;
 }
 
-// On mobile the sidebar is a fixed banner, so the main content needs
-// enough top padding to start below it (recomputed on load / resize).
-// Mobile header order (top to bottom): hairline, menu bar, then the blue
-// face/links banner (only on the About page). The menu sits at 14px; the
-// banner is positioned just below it here, and the main content is padded
-// to clear whichever element ends up lowest.
-function bannerVisible(sidebar) {
-  return sidebar && window.getComputedStyle(sidebar).display !== "none";
-}
-
+// On mobile the only fixed element is the menu bar (the "page header"),
+// pinned at 14px. Everything else - the blue About-page banner and the
+// page content - flows and scrolls normally beneath it. So we just pad
+// the top of the whole column enough to clear that fixed menu bar.
 function adjustMobileHeader() {
-  const sidebar = document.getElementById("sidebar");
   const nav = document.getElementById("topnav");
   const main = document.querySelector(".main");
-  if (!main) return;
+  const layout = document.querySelector(".layout");
+  if (!layout) return;
 
   if (window.matchMedia("(max-width: 800px)").matches) {
-    const GAP = 10;
-    const navTop = 14;
-    let bottom = navTop;
-
-    if (nav) {
-      nav.style.top = navTop + "px";
-      bottom = navTop + nav.offsetHeight;             // menu bar sits at the top
-    }
-    if (bannerVisible(sidebar)) {
-      const bannerTop = bottom + GAP;                 // banner tucks below the menu
-      sidebar.style.top = bannerTop + "px";
-      bottom = bannerTop + sidebar.offsetHeight;
-    }
-    main.style.paddingTop = bottom + GAP + 16 + "px";
+    const GAP = 12;
+    const navTop = 0;               // full-width banner pinned to the top edge
+    if (nav) nav.style.top = navTop + "px";
+    layout.style.paddingTop = navTop + (nav ? nav.offsetHeight : 0) + GAP + "px";
+    if (main) main.style.paddingTop = "";
   } else {
-    main.style.paddingTop = "";     // let the desktop stylesheet take over
+    layout.style.paddingTop = "";   // let the desktop stylesheet take over
+    if (main) main.style.paddingTop = "";
     if (nav) nav.style.top = "";
-    if (sidebar) sidebar.style.top = "";
   }
 }
 
@@ -148,9 +133,9 @@ window.addEventListener("resize", adjustMobileHeader);
     const nav = document.getElementById("topnav");
     if (!nav) { maxOffset = 0; return; }
     if (window.matchMedia("(max-width: 800px)").matches) {
-      // Only the menu bar (and hairline) hide on scroll; the blue banner
-      // is locked in place, so it is not part of this measurement.
-      maxOffset = 14 + nav.offsetHeight + 6;
+      // Only the top menu banner hides on scroll; it sits at the top edge,
+      // so pushing it up by its own height clears it.
+      maxOffset = nav.offsetHeight + 6;
     } else {
       maxOffset = nav.offsetHeight + 6;   // just the top bar
     }
