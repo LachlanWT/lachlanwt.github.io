@@ -1,23 +1,18 @@
-/* =========================================================
-   Portfolio styles
-   Tweak the colors below and the whole site updates.
-   ========================================================= */
+
 
 :root {
-  /* --- Colors (edit these) --- */
-  --sidebar-bg: #cde8ff;      /* bright light blue sidebar */
-  --main-bg:    #f3f4f6;      /* very light grey main area */
-  --card-bg:    #ffffff;      /* project cards / panels */
-  --text:       #2b2b2b;      /* main text */
-  --muted:      #6b6b6b;      /* secondary text */
-  --accent:     #3a6ea5;      /* links + highlights */
-  --border:     rgba(0, 0, 0, 0.18);   /* hairlines / dividers */
 
-  /* --- Layout --- */
+  --sidebar-bg: #cde8ff;
+  --main-bg:    #f3f4f6;
+  --card-bg:    #ffffff;
+  --text:       #2b2b2b;
+  --muted:      #6b6b6b;
+  --accent:     #3a6ea5;
+  --border:     rgba(0, 0, 0, 0.18);
+
   --sidebar-width: 28%;
   --content-max:   900px;
 
-  /* --- Motion (Apple-like easing) --- */
   --ease:      cubic-bezier(0.4, 0, 0.2, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --speed:     0.35s;
@@ -46,26 +41,22 @@ a {
 }
 a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 
-/* =========================================================
-   Overall layout: sidebar (left) + main (right)
-   ========================================================= */
 .layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* ---------------- Sidebar ---------------- */
 .sidebar {
   flex: 0 0 var(--sidebar-width);
   background: var(--sidebar-bg);
   padding: 2.25rem 1.5rem;
-  margin: 1.5rem;                       /* beige shows around the bubble */
-  border-radius: 28px;                  /* large rounded bubble */
+  margin: 1.5rem;
+  border-radius: 28px;
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.10);
   position: sticky;
   top: 1.5rem;
   align-self: flex-start;
-  height: calc(100vh - 3rem);           /* floats, not touching top/bottom */
+  height: calc(100vh - 3rem);
   overflow-y: auto;
   text-align: center;
 }
@@ -77,7 +68,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   object-fit: cover;
   margin: 0 auto 1rem;
   display: block;
-  background: #ffffff;         /* shows while no photo is set */
+  background: #ffffff;
   border: 3px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
 }
@@ -86,14 +77,14 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.25rem 0;
-  white-space: nowrap;         /* keep the name on one line */
+  white-space: nowrap;
 }
 
 .sidebar .tagline {
   color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 1.25rem;
-  white-space: nowrap;         /* keep the tagline on one line */
+  white-space: nowrap;
 }
 
 .sidebar .links {
@@ -115,30 +106,25 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 .sidebar .links svg {
   width: 18px;
   height: 18px;
-  fill: currentColor;          /* logo matches the link color */
+  fill: currentColor;
   flex-shrink: 0;
 }
 
-/* ---------------- Main content ---------------- */
 .main {
   flex: 1;
-  min-width: 0;           /* allow the column to shrink so content reflows to fit */
-  padding: 0 3rem 2rem;   /* top spacing comes from the header itself */
+  min-width: 0;
+  padding: 0 3rem 2rem;
 }
 
-/* ---------------- Top nav tabs ---------------- */
 .topnav {
   display: flex;
   gap: 0.5rem;
-  justify-content: flex-end;   /* tabs aligned to the right */
+  justify-content: flex-end;
   border-bottom: 1px solid var(--border);
   margin-bottom: 2rem;
   padding-top: 1.5rem;
   flex-wrap: wrap;
-  /* Header pins to the top, then moves 1:1 with the page as you scroll:
-     down pushes it up until hidden, up pulls it straight back down. The
-     shift lives in --nav-offset (set by site.js); no transition, so it
-     stays locked to the scroll. */
+
   position: sticky;
   top: 0;
   background: var(--main-bg);
@@ -159,18 +145,16 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 
 .topnav a:hover,
 .topnav a.active:hover {
-  color: var(--accent);            /* text turns blue */
+  color: var(--accent);
   text-decoration: underline;
   opacity: 1;
 }
 
-/* Active tab looks the same as the others until hovered */
 .topnav a.active {
   color: var(--text);
   background: none;
 }
 
-/* ---------------- Content area ---------------- */
 .content { max-width: var(--content-max); }
 
 .content h1 { font-size: 2rem; margin-top: 0; }
@@ -182,14 +166,10 @@ hr {
   margin: 1.5rem 0;
 }
 
-/* ---------------- Coursework groups ---------------- */
 .semester { margin-bottom: 1.5rem; }
 .semester h3 { margin-bottom: 0.4rem; }
 .semester ul { margin-top: 0.3rem; }
 
-/* =========================================================
-   Projects grid (clickable cards, like Pranav's)
-   ========================================================= */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -199,7 +179,7 @@ hr {
 .project-card {
   display: block;
   color: var(--text);
-  transition: transform var(--speed) var(--ease-soft);   /* the "pop" on hover */
+  transition: transform var(--speed) var(--ease-soft);
 }
 
 .project-card:hover {
@@ -208,12 +188,9 @@ hr {
   opacity: 1;
 }
 
-/* The photo. Add an image by setting a background-image on the card's
-   thumb, e.g. style="background-image:url('assets/project-1.jpg')".
-   Until then it shows a soft placeholder color. */
 .project-card .thumb {
   width: 100%;
-  aspect-ratio: 4 / 3;         /* height = 3/4 of the width */
+  aspect-ratio: 4 / 3;
   border-radius: 16px;
   background: #e4e6ea center / cover no-repeat;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
@@ -224,16 +201,13 @@ hr {
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.20);
 }
 
-/* Name + year sit beneath the photo, still part of the button */
 .project-card .title { font-weight: 700; font-size: 1.05rem; margin-top: 0.7rem; }
 .project-card .year { color: var(--muted); font-size: 0.85rem; }
 
-/* Back link on project detail pages */
 .back-link { display: inline-block; margin-bottom: 1rem; font-weight: 600; }
 
-/* Resume-bullet callout at the top of a project page */
 .project-highlights {
-  background: #eef5fc;              /* light blue tint */
+  background: #eef5fc;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.6rem 1.4rem;
@@ -242,7 +216,6 @@ hr {
 .project-highlights ul { margin: 0; padding-left: 1.2rem; }
 .project-highlights li { margin: 0.15rem 0; }
 
-/* Simple tag row for tools / skills */
 .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
 .tag-row li {
   background: var(--sidebar-bg);
@@ -251,7 +224,6 @@ hr {
   font-size: 0.9rem;
 }
 
-/* ---- Imported report content (figures, captions, TOC) ---- */
 .report-img {
   display: block;
   max-width: 560px;
@@ -283,11 +255,10 @@ hr {
 .toc-table { border-collapse: collapse; width: 100%; max-width: 520px; margin: 0.5rem 0 1rem; }
 .toc-table td { border: 1px solid var(--border); padding: 0.4rem 0.75rem; font-size: 0.95rem; }
 
-/* ---- Imported (pandoc) report body ---- */
 .report h2 { margin-top: 2.5rem; }
 .report h3 { margin-top: 2rem; }
 .report h4 { margin-top: 1.5rem; }
-/* offset anchored sections so TOC jumps don't hide them under the top bar */
+
 .report h2, .report h3, .report h4, .report .sec-anchor { scroll-margin-top: 90px; }
 .report img {
   display: block;
@@ -310,15 +281,12 @@ hr {
   text-align: left;
 }
 .report thead th { background: var(--sidebar-bg); }
-.report .math { overflow-x: auto; }   /* keep wide equations from overflowing */
+.report .math { overflow-x: auto; }
 
-/* Keep long reference URLs and wide tables from causing sideways scroll */
 .report { overflow-wrap: break-word; }
 .report a { overflow-wrap: anywhere; }
 .report table { display: block; max-width: 100%; overflow-x: auto; }
 
-/* Image with a hover caption: dark gradient footer + white text,
-   no image movement, description pulled from the report appendix. */
 .report .cap-img {
   position: relative;
   display: block;
@@ -354,7 +322,6 @@ hr {
 }
 .report .cap-img:hover .cap-text { opacity: 1; }
 
-/* Groups of figures lay out side by side and wrap into a grid */
 .report p.fig-row {
   display: flex;
   flex-wrap: wrap;
@@ -368,13 +335,11 @@ hr {
   margin: 0;
   max-width: min(100%, 340px);
 }
-/* uniform-ratio gallery images (cropped to fit the same box) */
+
 .report .gallery-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
-/* before/after arrow between two figures in a fig-row */
 .report .ba-arrow { align-self: center; font-size: 2rem; color: var(--muted); padding: 0 0.25rem; }
 
-/* Collaborator / link names (plain underlined hyperlinks) */
 .collab-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -390,7 +355,6 @@ hr {
 }
 .collab-btn:hover { color: var(--text); text-decoration: underline; opacity: 0.85; }
 
-/* Back-to-top link at the bottom of a project page (plain text + arrow) */
 .back-to-top-wrap { text-align: center; margin: 2.5rem 0 1rem; }
 .back-to-top {
   display: inline-block;
@@ -400,22 +364,16 @@ hr {
 }
 .back-to-top:hover { color: var(--text); text-decoration: none; opacity: 1; }
 
-/* =========================================================
-   Resume embed
-   ========================================================= */
 .resume-img {
   display: block;
   width: 100%;
   max-width: 800px;
   height: auto;
   border: 1px solid var(--border);
-  border-radius: 8px;          /* small corner rounding */
+  border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
 }
 
-/* =========================================================
-   Entrance motion — gentle fade-up on load
-   ========================================================= */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
@@ -423,8 +381,6 @@ hr {
 
 .main .content { animation: fadeUp 0.6s 0.08s var(--ease-soft) both; }
 
-/* Whole-page fade in on load, and a quick fade out when leaving
-   via an internal link (JS sets body opacity to 0 before navigating). */
 @keyframes pageIn {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -435,7 +391,6 @@ body {
   transition: opacity 0.12s var(--ease);
 }
 
-/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -444,32 +399,25 @@ body {
   }
 }
 
-/* =========================================================
-   Responsive: stack sidebar on top for small screens
-   ========================================================= */
 @media (max-width: 800px) {
   .layout { flex-direction: column; }
 
-  /* Blue sidebar becomes a normal in-flow banner at the top of the page,
-     below the fixed menu bar. It has no scroll effects - it just sits at
-     the top and scrolls away with the content. To save space it only
-     appears on the About page; every other page hides it (rule below). */
   .sidebar {
     position: static;
     flex: 0 0 auto;
+    align-self: stretch;
     height: auto;
-    margin: 0 1rem 1.25rem;       /* inset sides, gap before the content below */
+    margin: 0 1rem 1.25rem;
     padding: 12px 16px;
     border-radius: 22px;
     overflow: visible;
     display: flex;
-    flex-direction: row;         /* photo left, text/links right */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 16px;
   }
 
-  /* Hide the face/links banner on every page except About, to save space */
   body:not([data-page="index"]) .sidebar { display: none; }
 
   .sidebar .photo {
@@ -479,7 +427,6 @@ body {
     flex-shrink: 0;
   }
 
-  /* Name, tagline, and links stacked and centered to the right */
   .sidebar-body {
     display: flex;
     flex-direction: column;
@@ -490,9 +437,6 @@ body {
   .sidebar .name { font-size: 1.15rem; white-space: normal; }
   .sidebar .tagline { font-size: 0.85rem; white-space: normal; margin-bottom: 0.5rem; }
 
-  /* Menu bar is a full-width bar pinned to the top edge - solid
-     background with just a hairline divider along the bottom (no top
-     line, no shadow), so page content never shows around or behind it. */
   .topnav {
     position: fixed;
     top: 0;
@@ -500,15 +444,21 @@ body {
     right: 0;
     justify-content: center;
     background: var(--main-bg);
-    border-bottom: 1px solid var(--border);
     border-radius: 0;
     margin-bottom: 0;
     padding: 8px 1rem;
     z-index: 55;
   }
+  .topnav::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    border-bottom: 1px solid var(--border);
+  }
 
   .topnav a { font-size: 1rem; padding: 0.45rem 0.7rem; }
 
-  /* Main content clears the fixed banner; padding-top set in site.js */
   .main { padding: 1.5rem; }
 }

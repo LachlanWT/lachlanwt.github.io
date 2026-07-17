@@ -1,18 +1,8 @@
-/* =========================================================
-   site.js — shared sidebar + top navigation
-   ---------------------------------------------------------
-   EDIT YOUR INFO IN THE "SITE" OBJECT BELOW.
-   Everything else builds the sidebar and tabs automatically,
-   so you only enter your name / photo / links in ONE place.
-   ========================================================= */
-
 const SITE = {
-  name: "Lachlan Watts-Tobin",                       // <-- your name
-  tagline: "EECS Student • UC Berkeley",        // <-- short line under your name
-  photo: "assets/pfp.png",             // <-- drop your photo in the assets folder
+  name: "Lachlan Watts-Tobin",
+  tagline: "EECS Student • UC Berkeley",
+  photo: "assets/pfp.png",
 
-  // Add, remove, or edit links freely.
-  // "icon" picks a logo from the ICONS list further down.
   links: [
     { label: "Email",    href: "https://mail.google.com/mail/?view=cm&fs=1&to=lachlanwt@berkeley.edu", icon: "email" },
     { label: "GitHub",   href: "https://github.com/LachlanWT",         icon: "github" },
@@ -20,7 +10,6 @@ const SITE = {
   ],
 };
 
-// Small logo library (SVG). Add more here if you add more links.
 const ICONS = {
   email:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
@@ -30,8 +19,6 @@ const ICONS = {
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>',
 };
 
-// Top navigation tabs. (Project detail pages are intentionally
-// NOT listed here — they're reached only by clicking a project card.)
 const NAV = [
   { label: "About",      href: "index.html" },
   { label: "Coursework", href: "coursework.html" },
@@ -39,12 +26,6 @@ const NAV = [
   { label: "Resume",     href: "resume.html" },
 ];
 
-/* ---------------------------------------------------------
-   You normally don't need to edit below this line.
-   --------------------------------------------------------- */
-
-// BASE handles pages that live in a subfolder (e.g. /projects/).
-// Those pages set: <script>window.SITE_BASE = "../";</script> before this file.
 const BASE = window.SITE_BASE || "";
 
 function buildSidebar() {
@@ -69,10 +50,6 @@ function buildSidebar() {
   `;
 }
 
-// On mobile the only fixed element is the menu bar (the "page header"),
-// pinned at 14px. Everything else - the blue About-page banner and the
-// page content - flows and scrolls normally beneath it. So we just pad
-// the top of the whole column enough to clear that fixed menu bar.
 function adjustMobileHeader() {
   const nav = document.getElementById("topnav");
   const main = document.querySelector(".main");
@@ -81,12 +58,12 @@ function adjustMobileHeader() {
 
   if (window.matchMedia("(max-width: 800px)").matches) {
     const GAP = 12;
-    const navTop = 0;               // full-width banner pinned to the top edge
+    const navTop = 0;
     if (nav) nav.style.top = navTop + "px";
     layout.style.paddingTop = navTop + (nav ? nav.offsetHeight : 0) + GAP + "px";
     if (main) main.style.paddingTop = "";
   } else {
-    layout.style.paddingTop = "";   // let the desktop stylesheet take over
+    layout.style.paddingTop = "";
     if (main) main.style.paddingTop = "";
     if (nav) nav.style.top = "";
   }
@@ -96,7 +73,6 @@ function buildNav() {
   const el = document.getElementById("topnav");
   if (!el) return;
 
-  // The active tab is set per page via <body data-page="...">.
   const current = document.body.getAttribute("data-page");
 
   el.innerHTML = NAV.map((n) => {
@@ -114,11 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("load", adjustMobileHeader);
 window.addEventListener("resize", adjustMobileHeader);
 
-/* Quick-return header that tracks the scroll 1:1: scrolling down pushes it
-   up until it is hidden just above the top, and scrolling up pulls it
-   straight back down — it only ever moves at the exact rate you scroll.
-   The upward shift is stored in --nav-offset and applied as a translate
-   in the CSS (no transition, so it stays locked to your finger). */
 (function () {
   let lastY = Math.max(0, window.scrollY);
   let offset = 0;
@@ -128,7 +99,7 @@ window.addEventListener("resize", adjustMobileHeader);
   function measure() {
     const nav = document.getElementById("topnav");
     if (!nav) { maxOffset = 0; return; }
-    maxOffset = nav.offsetHeight + 6;   // the header's own height
+    maxOffset = nav.offsetHeight + 6;
     if (offset > maxOffset) offset = maxOffset;
     apply();
   }
@@ -153,8 +124,6 @@ window.addEventListener("resize", adjustMobileHeader);
   document.addEventListener("DOMContentLoaded", measure);
 })();
 
-/* Fade the page out before following an internal link. External links,
-   downloads, new-tab links, and mailto/anchor links are left alone. */
 document.addEventListener("click", function (e) {
   const a = e.target.closest("a");
   if (!a) return;
