@@ -135,15 +135,15 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   margin-bottom: 2rem;
   padding-top: 1.5rem;
   flex-wrap: wrap;
-  /* Header pins to the top, then hides on scroll-down and smoothly pops
-     back in on scroll-up (offset is 0 or hidden, set by site.js; the
-     transition below does the smoothing). */
+  /* Header pins to the top, then moves 1:1 with the page as you scroll:
+     down pushes it up until hidden, up pulls it straight back down. The
+     shift lives in --nav-offset (set by site.js); no transition, so it
+     stays locked to the scroll. */
   position: sticky;
   top: 0;
   background: var(--main-bg);
   z-index: 40;
   transform: translateY(calc(var(--nav-offset, 0px) * -1));
-  transition: transform 0.4s var(--ease-soft);
 }
 
 .topnav a {
@@ -450,19 +450,6 @@ body {
 @media (max-width: 800px) {
   .layout { flex-direction: column; }
 
-  /* Fixed hairline pinned to the very top of the screen */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid var(--border);
-    z-index: 60;
-    transform: translateY(calc(var(--nav-offset, 0px) * -1));
-    transition: transform 0.4s var(--ease-soft);
-  }
-
   /* Blue sidebar becomes a normal in-flow banner at the top of the page,
      below the fixed menu bar. It has no scroll effects - it just sits at
      the top and scrolls away with the content. To save space it only
@@ -503,9 +490,9 @@ body {
   .sidebar .name { font-size: 1.15rem; white-space: normal; }
   .sidebar .tagline { font-size: 0.85rem; white-space: normal; margin-bottom: 0.5rem; }
 
-  /* Menu bar is a full-width banner pinned to the top edge - solid
-     background with a bottom border and soft shadow, so page content
-     never shows around or behind it. */
+  /* Menu bar is a full-width bar pinned to the top edge - solid
+     background with just a hairline divider along the bottom (no top
+     line, no shadow), so page content never shows around or behind it. */
   .topnav {
     position: fixed;
     top: 0;
@@ -514,7 +501,6 @@ body {
     justify-content: center;
     background: var(--main-bg);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     border-radius: 0;
     margin-bottom: 0;
     padding: 8px 1rem;

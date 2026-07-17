@@ -114,58 +114,34 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("load", adjustMobileHeader);
 window.addEventListener("resize", adjustMobileHeader);
 
-/* Quick-return header: scrolling DOWN hides it (slides up out of view);
-   scrolling UP pops it back in. The header only ever sits fully shown or
-   fully hidden — the smooth slide is a CSS transition on the transform.
-   The hidden distance is stored in --nav-offset; JS just toggles it
-   between 0 (shown) and the full offset (hidden). */
+/* Quick-return header that tracks the scroll 1:1: scrolling down pushes it
+   up until it is hidden just above the top, and scrolling up pulls it
+   straight back down — it only ever moves at the exact rate you scroll.
+   The upward shift is stored in --nav-offset and applied as a translate
+   in the CSS (no transition, so it stays locked to your finger). */
 (function () {
-  const THRESHOLD = 10;   // px of travel in one direction before toggling
-  const TOP_ZONE  = 12;   // always show when this close to the top
-
   let lastY = Math.max(0, window.scrollY);
-  let accum = 0;
-  let hidden = false;
+  let offset = 0;
   let maxOffset = 0;
   let ticking = false;
 
   function measure() {
     const nav = document.getElementById("topnav");
     if (!nav) { maxOffset = 0; return; }
-    if (window.matchMedia("(max-width: 800px)").matches) {
-      // Only the top menu banner hides on scroll; it sits at the top edge,
-      // so pushing it up by its own height clears it.
-      maxOffset = nav.offsetHeight + 6;
-    } else {
-      maxOffset = nav.offsetHeight + 6;   // just the top bar
-    }
+    maxOffset = nav.offsetHeight + 6;   // the header's own height
+    if (offset > maxOffset) offset = maxOffset;
     apply();
   }
 
   function apply() {
-    document.documentElement.style.setProperty(
-      "--nav-offset", (hidden ? maxOffset : 0) + "px");
-  }
-
-  function setHidden(next) {
-    if (next !== hidden) { hidden = next; apply(); }
+    document.documentElement.style.setProperty("--nav-offset", offset + "px");
   }
 
   function onFrame() {
     const y = Math.max(0, window.scrollY);
-    const dy = y - lastY;
+    offset = Math.min(maxOffset, Math.max(0, offset + (y - lastY)));
     lastY = y;
-
-    if (y <= TOP_ZONE) {
-      accum = 0;
-      setHidden(false);             // always show at the very top
-    } else {
-      // accumulate travel; reset the running total on a direction change
-      if ((dy > 0 && accum < 0) || (dy < 0 && accum > 0)) accum = 0;
-      accum += dy;
-      if (accum > THRESHOLD)  { setHidden(true);  accum = 0; }   // scrolling down
-      if (accum < -THRESHOLD) { setHidden(false); accum = 0; }   // scrolling up
-    }
+    apply();
     ticking = false;
   }
 
