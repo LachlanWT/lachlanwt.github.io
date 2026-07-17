@@ -71,24 +71,39 @@ function buildSidebar() {
 
 // On mobile the sidebar is a fixed banner, so the main content needs
 // enough top padding to start below it (recomputed on load / resize).
+// Mobile header order (top to bottom): hairline, menu bar, then the blue
+// face/links banner (only on the About page). The menu sits at 14px; the
+// banner is positioned just below it here, and the main content is padded
+// to clear whichever element ends up lowest.
+function bannerVisible(sidebar) {
+  return sidebar && window.getComputedStyle(sidebar).display !== "none";
+}
+
 function adjustMobileHeader() {
   const sidebar = document.getElementById("sidebar");
   const nav = document.getElementById("topnav");
   const main = document.querySelector(".main");
-  if (!sidebar || !main) return;
+  if (!main) return;
 
   if (window.matchMedia("(max-width: 800px)").matches) {
-    const bannerBottom = 14 + sidebar.offsetHeight;   // 14px = banner top offset
+    const GAP = 10;
+    const navTop = 14;
+    let bottom = navTop;
+
     if (nav) {
-      const navTop = bannerBottom + 10;               // menu bar sits below banner
       nav.style.top = navTop + "px";
-      main.style.paddingTop = navTop + nav.offsetHeight + 16 + "px";
-    } else {
-      main.style.paddingTop = bannerBottom + 20 + "px";
+      bottom = navTop + nav.offsetHeight;             // menu bar sits at the top
     }
+    if (bannerVisible(sidebar)) {
+      const bannerTop = bottom + GAP;                 // banner tucks below the menu
+      sidebar.style.top = bannerTop + "px";
+      bottom = bannerTop + sidebar.offsetHeight;
+    }
+    main.style.paddingTop = bottom + GAP + 16 + "px";
   } else {
     main.style.paddingTop = "";     // let the desktop stylesheet take over
     if (nav) nav.style.top = "";
+    if (sidebar) sidebar.style.top = "";
   }
 }
 
@@ -114,46 +129,65 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("load", adjustMobileHeader);
 window.addEventListener("resize", adjustMobileHeader);
 
-/* Header moves 1:1 with the page: scrolling down pushes it up until it
-   is hidden just above the top; scrolling up pulls it straight back down.
-   It only ever moves at the exact rate you scroll. The upward shift is
-   stored in --nav-offset and applied as a translate in the CSS. */
+/* Quick-return header: scrolling DOWN hides it (slides up out of view);
+   scrolling UP pops it back in. The header only ever sits fully shown or
+   fully hidden — the smooth slide is a CSS transition on the transform.
+   The hidden distance is stored in --nav-offset; JS just toggles it
+   between 0 (shown) and the full offset (hidden). */
 (function () {
-  let lastY = window.scrollY;
-  let offset = 0;
+  const THRESHOLD = 10;   // px of travel in one direction before toggling
+  const TOP_ZONE  = 12;   // always show when this close to the top
+
+  let lastY = Math.max(0, window.scrollY);
+  let accum = 0;
+  let hidden = false;
   let maxOffset = 0;
   let ticking = false;
 
   function measure() {
     const nav = document.getElementById("topnav");
-    const sidebar = document.getElementById("sidebar");
     if (!nav) { maxOffset = 0; return; }
     if (window.matchMedia("(max-width: 800px)").matches) {
-      // hide the whole top group (hairline + banner + menu bar)
-      const navTop = 14 + (sidebar ? sidebar.offsetHeight : 0) + 10;
-      maxOffset = navTop + nav.offsetHeight + 6;
+      // Only the menu bar (and hairline) hide on scroll; the blue banner
+      // is locked in place, so it is not part of this measurement.
+      maxOffset = 14 + nav.offsetHeight + 6;
     } else {
       maxOffset = nav.offsetHeight + 6;   // just the top bar
     }
-    if (offset > maxOffset) offset = maxOffset;
+    apply();
   }
 
   function apply() {
-    document.documentElement.style.setProperty("--nav-offset", offset + "px");
+    document.documentElement.style.setProperty(
+      "--nav-offset", (hidden ? maxOffset : 0) + "px");
+  }
+
+  function setHidden(next) {
+    if (next !== hidden) { hidden = next; apply(); }
   }
 
   function onFrame() {
     const y = Math.max(0, window.scrollY);
-    offset = Math.min(maxOffset, Math.max(0, offset + (y - lastY)));
+    const dy = y - lastY;
     lastY = y;
-    apply();
+
+    if (y <= TOP_ZONE) {
+      accum = 0;
+      setHidden(false);             // always show at the very top
+    } else {
+      // accumulate travel; reset the running total on a direction change
+      if ((dy > 0 && accum < 0) || (dy < 0 && accum > 0)) accum = 0;
+      accum += dy;
+      if (accum > THRESHOLD)  { setHidden(true);  accum = 0; }   // scrolling down
+      if (accum < -THRESHOLD) { setHidden(false); accum = 0; }   // scrolling up
+    }
     ticking = false;
   }
 
   window.addEventListener("scroll", function () {
     if (!ticking) { window.requestAnimationFrame(onFrame); ticking = true; }
   });
-  window.addEventListener("resize", function () { measure(); apply(); });
+  window.addEventListener("resize", measure);
   window.addEventListener("load", measure);
   document.addEventListener("DOMContentLoaded", measure);
 })();

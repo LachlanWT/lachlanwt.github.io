@@ -135,13 +135,15 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   margin-bottom: 2rem;
   padding-top: 1.5rem;
   flex-wrap: wrap;
-  /* Header pins to the top, then is pushed up/down 1:1 with the page
-     as you scroll (offset lives in --nav-offset, set by site.js). */
+  /* Header pins to the top, then hides on scroll-down and smoothly pops
+     back in on scroll-up (offset is 0 or hidden, set by site.js; the
+     transition below does the smoothing). */
   position: sticky;
   top: 0;
   background: var(--main-bg);
   z-index: 40;
   transform: translateY(calc(var(--nav-offset, 0px) * -1));
+  transition: transform 0.4s var(--ease-soft);
 }
 
 .topnav a {
@@ -458,29 +460,34 @@ body {
     border-top: 1px solid var(--border);
     z-index: 60;
     transform: translateY(calc(var(--nav-offset, 0px) * -1));
+    transition: transform 0.4s var(--ease-soft);
   }
 
-  /* Blue sidebar becomes a fixed banner just below the hairline.
-     It floats as a layer with clear gaps around it, so page content
-     scrolls behind it. */
+  /* Blue sidebar becomes a fixed banner that sits BELOW the menu bar
+     (its top is set in site.js). It is LOCKED in place - it does not
+     take part in the scroll hide/show; it just stays pinned on a back
+     layer while the menu bar floats over it. To save space it only
+     appears on the About page; every other page hides it (rule below). */
   .sidebar {
     position: fixed;
-    top: 14px;
+    top: 60px;                     /* fallback; refined below the menu in site.js */
     left: 1rem;
     right: 1rem;
     height: auto;
     margin: 0;
     padding: 12px 16px;
     border-radius: 22px;
-    z-index: 50;
+    z-index: 30;                   /* back layer: sits behind the menu bar */
     overflow: visible;
     display: flex;
     flex-direction: row;         /* photo left, text/links right */
     align-items: center;
     justify-content: center;
     gap: 16px;
-    transform: translateY(calc(var(--nav-offset, 0px) * -1));
   }
+
+  /* Hide the face/links banner on every page except About, to save space */
+  body:not([data-page="index"]) .sidebar { display: none; }
 
   .sidebar .photo {
     width: 84px;
@@ -500,9 +507,11 @@ body {
   .sidebar .name { font-size: 1.15rem; white-space: normal; }
   .sidebar .tagline { font-size: 0.85rem; white-space: normal; margin-bottom: 0.5rem; }
 
-  /* Menu bar is fixed just below the banner (top set in site.js) */
+  /* Menu bar sits at the very top (just below the hairline); the blue
+     banner, when present, is positioned below it in site.js. */
   .topnav {
     position: fixed;
+    top: 14px;
     left: 1rem;
     right: 1rem;
     justify-content: center;
@@ -510,7 +519,7 @@ body {
     border-radius: 16px;
     margin-bottom: 0;
     padding: 2px 8px;
-    z-index: 45;
+    z-index: 55;
   }
 
   .topnav a { font-size: 1rem; padding: 0.45rem 0.7rem; }
