@@ -444,6 +444,7 @@ body {
     right: 0;
     justify-content: center;
     background: var(--main-bg);
+    border-bottom: none;
     border-radius: 0;
     margin-bottom: 0;
     padding: 8px 1rem;
