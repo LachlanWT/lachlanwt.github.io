@@ -133,7 +133,16 @@ document.addEventListener("click", function (e) {
   if (href.startsWith("#") || href.startsWith("mailto:") ||
       href.startsWith("http://") || href.startsWith("https://")) return;
 
+  const url = new URL(href, window.location.href);
+  let path = url.pathname;
+  if (path.endsWith("/index.html")) {
+    path = path.slice(0, -"index.html".length);
+  } else if (path.endsWith(".html")) {
+    path = path.slice(0, -".html".length);
+  }
+  const dest = path + url.search + url.hash;
+
   e.preventDefault();
   document.body.style.opacity = "0";
-  setTimeout(function () { window.location.href = href; }, 120);
+  setTimeout(function () { window.location.href = dest; }, 120);
 });
