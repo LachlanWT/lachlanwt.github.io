@@ -146,3 +146,7 @@ document.addEventListener("click", function (e) {
   document.body.style.opacity = "0";
   setTimeout(function () { window.location.href = dest; }, 120);
 });
+
+window.addEventListener("pageshow", function () {
+  document.body.style.opacity = "";
+});
