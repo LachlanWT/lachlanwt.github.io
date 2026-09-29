@@ -125,6 +125,7 @@ window.addEventListener("resize", adjustMobileHeader);
 })();
 
 document.addEventListener("click", function (e) {
+  if (location.hostname.indexOf("ocf.berkeley.edu") !== -1) return; /* OCF: keep .html links */
   const a = e.target.closest("a");
   if (!a) return;
   const href = a.getAttribute("href");
