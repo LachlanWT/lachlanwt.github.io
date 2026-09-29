@@ -1,0 +1,17 @@
+# Clean URLs on Apache (used by OCF). Ignored by Caddy (Pi) and GitHub Pages.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /path/index.html  ->  /path/
+  RewriteCond %{THE_REQUEST} \s([^?\s]*/)index\.html[\s?] [NC]
+  RewriteRule ^ %1 [R=301,L]
+
+  # /path/page.html  ->  /path/page
+  RewriteCond %{THE_REQUEST} \s([^?\s]+)\.html[\s?] [NC]
+  RewriteRule ^ %1 [R=301,L]
+
+  # Serve an extensionless URL from its matching .html file
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
