@@ -134,6 +134,7 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
 }
 
 .topnav a {
+  position: relative;
   padding: 0.6rem 1.1rem;
   color: var(--text);
   font-weight: 600;
@@ -144,10 +145,27 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
               transform var(--speed) var(--ease-soft);
 }
 
+.topnav a::after {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.topnav a:hover::after,
+.topnav a.active::after {
+  transform: scaleX(1);
+}
+
 .topnav a:hover,
 .topnav a.active:hover {
   color: var(--accent);
-  text-decoration: underline;
   opacity: 1;
 }
 
