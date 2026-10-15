@@ -1,7 +1,7 @@
 const SITE = {
   name: "Lachlan Watts-Tobin",
   tagline: "EECS Student • UC Berkeley",
-  photo: "assets/pfp.png",
+  photo: "assets/pfp.jpg",
 
   links: [
     { label: "Email",    href: "https://mail.google.com/mail/?view=cm&fs=1&to=lachlanwt@berkeley.edu", icon: "email" },

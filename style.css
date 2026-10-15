@@ -155,11 +155,10 @@ a:hover { color: var(--text); text-decoration: none; opacity: 0.85; }
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.125s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.topnav a:hover::after,
-.topnav a.active::after {
+.topnav a:hover::after {
   transform: scaleX(1);
 }
 
@@ -440,8 +439,8 @@ body {
   body:not([data-page="index"]) .sidebar { display: none; }
 
   .sidebar .photo {
-    width: 84px;
-    height: 84px;
+    width: 120px;
+    height: 120px;
     margin: 0;
     flex-shrink: 0;
   }
